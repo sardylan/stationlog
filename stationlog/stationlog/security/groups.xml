@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <record model="ir.module.category" id="category_stationlog">
+            <field name="name">Station Log</field>
+            <field name="description">Station Log group</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record model="res.groups" id="group_user">
+            <field name="name">User</field>
+            <field name="category_id" ref="category_stationlog"/>
+        </record>
+
+        <record model="res.groups" id="group_admin">
+            <field name="name">Admin</field>
+            <field name="category_id" ref="category_stationlog"/>
+            <field name="implied_ids" eval="[(4, ref('stationlog.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+    </data>
+</odoo>
