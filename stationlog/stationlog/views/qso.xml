@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <record model="ir.ui.view" id="qso_tree">
+            <field name="name">qso</field>
+            <field name="model">stationlog.qso</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="callsign"/>
+                    <field name="ts_start"/>
+                    <field name="frequency"/>
+                    <field name="modulation_id"/>
+                    <field name="power"/>
+                    <field name="rx_rst"/>
+                    <field name="tx_rst"/>
+                    <field name="qsl_status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qso_form">
+            <field name="name">qso</field>
+            <field name="model">stationlog.qso</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h1>
+                            <field name="callsign" class="w-25"/>
+                        </h1>
+                        <group>
+                            <field name="ts_start" class="w-50"/>
+                            <field name="ts_end" class="w-50"/>
+                        </group>
+                        <group col="4">
+                            <field name="frequency"/>
+                            <field name="modulation_id"/>
+                            <field name="power"/>
+                        </group>
+                        <group col="4" class="oe_read_only">
+                            <field name="rx_rst"/>
+                            <field name="qrm"/>
+                            <field name="tx_rst"/>
+                            <field name="qrn"/>
+                            <field name="qsl_status"/>
+                            <field name="qsb"/>
+                        </group>
+                        <group class="oe_edit_only">
+                            <label for="rx_r" string="Received RST"/>
+                            <div class="w-25">
+                                <field name="rx_r" nolabel="1" class="w-25"/>
+                                <field name="rx_s" nolabel="1" class="w-25"/>
+                                <field name="rx_t" nolabel="1" class="w-25"/>
+                            </div>
+                            <label for="rx_r" string="Sent RST"/>
+                            <div class="w-25">
+                                <field name="tx_r" nolabel="1" class="w-25"/>
+                                <field name="tx_s" nolabel="1" class="w-25"/>
+                                <field name="tx_t" nolabel="1" class="w-25"/>
+                            </div>
+                        </group>
+                        <group class="oe_edit_only" col="4">
+                            <field name="qrm"/>
+                            <field name="qsl_sent"/>
+                            <field name="qrn"/>
+                            <field name="qsl_received"/>
+                            <field name="qsb"/>
+                        </group>
+                        <notebook>
+                            <page string="Note">
+                                <field name="note"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

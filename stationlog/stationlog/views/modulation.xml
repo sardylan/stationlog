@@ -10,7 +10,6 @@
                 <tree>
                     <field name="name"/>
                     <field name="emission"/>
-                    <field name="note"/>
                 </tree>
             </field>
         </record>
