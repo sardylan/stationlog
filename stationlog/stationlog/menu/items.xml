@@ -20,11 +20,17 @@
                   groups="group_admin"
                   sequence="100"/>
 
+        <menuitem id="menu_config_logbook"
+                  name="Logbooks"
+                  parent="menu_config"
+                  action="action_logbook_list"
+                  sequence="0"/>
+
         <menuitem id="menu_config_modulation"
                   name="Modulations"
                   parent="menu_config"
                   action="action_modulation_list"
-                  sequence="0"/>
+                  sequence="1"/>
 
     </data>
 </odoo>

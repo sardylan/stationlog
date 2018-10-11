@@ -9,9 +9,11 @@
     "data": [
         "security/groups.xml",
 
+        "security/access/logbook.xml",
         "security/access/modulation.xml",
         "security/access/qso.xml",
 
+        "views/logbook.xml",
         "views/modulation.xml",
         "views/qso.xml",
 

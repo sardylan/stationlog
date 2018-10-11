@@ -3,6 +3,14 @@
 <odoo>
     <data noupdate="0">
 
+        <record model="ir.actions.act_window" id="action_logbook_list">
+            <field name="name">Logbooks</field>
+            <field name="res_model">stationlog.logbook</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="limit">20</field>
+        </record>
+
         <record model="ir.actions.act_window" id="action_modulation_list">
             <field name="name">Modulations</field>
             <field name="res_model">stationlog.modulation</field>
