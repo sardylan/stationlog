@@ -29,6 +29,9 @@
                         <h1>
                             <field name="callsign" class="w-25"/>
                         </h1>
+                        <h3>
+                            <field name="logbook_id" class="w-25"/>
+                        </h3>
                         <group>
                             <field name="ts_start" class="w-50"/>
                             <field name="ts_end" class="w-50"/>

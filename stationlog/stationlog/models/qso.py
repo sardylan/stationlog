@@ -1,4 +1,5 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _, SUPERUSER_ID
+from odoo.exceptions import ValidationError
 
 SELECTION_READABILITY = [
     ("1", "1"),
@@ -26,6 +27,15 @@ class QSO(models.Model):
     _inherit = "mail.thread"
     _description = "QSO"
     _order = "ts_start DESC, callsign ASC"
+
+    logbook_id = fields.Many2one(
+        string="Logbook",
+        comodel_name="stationlog.logbook",
+        required=True,
+        domain=lambda self: self.domain_logbook_id(),
+        default=lambda self: self.default_logbook_id(),
+        track_visibility="onchange"
+    )
 
     callsign = fields.Char(
         string="Callsign",
@@ -209,6 +219,21 @@ class QSO(models.Model):
             if rec.qsl_received:
                 value.append("RX")
             rec.qsl_status = "-".join(value)
+
+    def domain_logbook_id(self):
+        return [
+            ("active", "=", True),
+            ("res_users_ids", "in", [self.env.uid])
+        ]
+
+    def default_logbook_id(self):
+        logbook_obj = self.env["stationlog.logbook"]
+        logbook_domain = self.domain_logbook_id()
+        logbook_id = logbook_obj.search(logbook_domain, limit=1)
+        if not logbook_id and self.env.uid != SUPERUSER_ID:
+            raise ValidationError(_("Unable to find a logbook"))
+
+        return logbook_id.id
 
     @staticmethod
     def _rst_string(r, s, t):

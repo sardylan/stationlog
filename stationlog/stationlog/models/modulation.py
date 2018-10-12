@@ -61,13 +61,6 @@ class Modulation(models.Model):
         translate=False,
     )
 
-    complete_name = fields.Char(
-        string="Complete name",
-        translate=False,
-        compute="_compute_complete_name",
-        store=True
-    )
-
     modulation = fields.Selection(
         string="Modulation",
         required=True,
@@ -89,7 +82,15 @@ class Modulation(models.Model):
     emission = fields.Char(
         string="Emission",
         compute="_compute_emission",
-        translate=False
+        translate=False,
+        store=True
+    )
+
+    complete_name = fields.Char(
+        string="Complete name",
+        translate=False,
+        compute="_compute_complete_name",
+        store=True
     )
 
     note = fields.Html(
