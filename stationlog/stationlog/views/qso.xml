@@ -89,7 +89,11 @@
             <field name="name">qso_calendar</field>
             <field name="model">stationlog.qso</field>
             <field name="arch" type="xml">
-                <calendar string="QSO" date_start="ts_start" date_stop="ts_end" color="logbook_id">
+                <calendar string="QSO"
+                          date_start="ts_start"
+                          date_stop="ts_end"
+                          color="logbook_id"
+                          mode="month">
                     <field name="short_desc"/>
                 </calendar>
             </field>
