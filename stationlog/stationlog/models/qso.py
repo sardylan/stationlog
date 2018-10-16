@@ -155,6 +155,11 @@ class QSO(models.Model):
         string="Note"
     )
 
+    short_desc = fields.Char(
+        string="Short description",
+        compute="_compute_short_desc"
+    )
+
     rx_rst = fields.Char(
         string="Received RST",
         help="Received RST",
@@ -199,6 +204,15 @@ class QSO(models.Model):
     def _onchange_start(self):
         for rec in self:
             rec.ts_end = rec.ts_start
+
+    @api.onchange("callsign", "frequency", "modulation_id")
+    def _compute_short_desc(self):
+        for rec in self:
+            rec.short_desc = "%s %.03f %s" % (
+                rec.callsign,
+                float(rec.frequency / 1000000),
+                rec.modulation_id.complete_name
+            )
 
     @api.depends("rx_r", "rx_s", "rx_t")
     def _compute_received_rst(self):
