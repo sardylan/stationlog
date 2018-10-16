@@ -44,6 +44,12 @@ class QSO(models.Model):
         track_visibility="onchange"
     )
 
+    operator = fields.Char(
+        string="Op.",
+        help="Operator name",
+        track_visibility="onchange"
+    )
+
     ts_start = fields.Datetime(
         string="Start datetime",
         help="Start datetime",
@@ -172,6 +178,12 @@ class QSO(models.Model):
         compute="_compute_sent_rst"
     )
 
+    disturbs = fields.Char(
+        string="Disturbs",
+        help="Disturbs like QRM, QRN or QSB",
+        compute="_compute_disturbs"
+    )
+
     qsl_status = fields.Char(
         string="QSL Status",
         help="QSL Status",
@@ -223,6 +235,16 @@ class QSO(models.Model):
     def _compute_sent_rst(self):
         for rec in self:
             rec.tx_rst = self._rst_string(rec.tx_r, rec.tx_s, rec.tx_t)
+
+    @api.depends("qrm", "qrn", "qsb")
+    def _compute_disturbs(self):
+        for rec in self:
+            disturbs = []
+            rec.qrm and disturbs.append("QRM")
+            rec.qrn and disturbs.append("QRN")
+            rec.qsb and disturbs.append("QSB")
+
+            rec.disturbs = "-".join(disturbs)
 
     @api.depends("qsl_sent", "qsl_received")
     def _compute_qsl_status(self):
