@@ -16,6 +16,7 @@
                     <field name="rx_rst"/>
                     <field name="tx_rst"/>
                     <field name="qsl_status"/>
+                    <field name="logbook_id"/>
                 </tree>
             </field>
         </record>
