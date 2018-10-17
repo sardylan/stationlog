@@ -107,8 +107,8 @@ class QSO(models.Model):
     )
 
     tx_r = fields.Selection(
-        string="Sent Radio",
-        help="Sent Radio",
+        string="Sent Readability",
+        help="Sent Readability",
         selection=SELECTION_READABILITY,
         track_visibility="onchange"
     )
