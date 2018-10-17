@@ -157,6 +157,14 @@ class QSO(models.Model):
         track_visibility="onchange"
     )
 
+    mobile = fields.Boolean(
+        string="Mobile",
+        help="Mobile",
+        track_visibility="onchange",
+        required=True,
+        default=False
+    )
+
     note = fields.Html(
         string="Note"
     )

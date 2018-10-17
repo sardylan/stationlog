@@ -45,6 +45,7 @@
                             <field name="frequency"/>
                             <field name="modulation_id"/>
                             <field name="power"/>
+                            <field name="mobile"/>
                         </group>
                         <group col="4" class="oe_read_only">
                             <field name="rx_rst"/>
