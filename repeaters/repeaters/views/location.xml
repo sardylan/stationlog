@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <record model="ir.ui.view" id="view_location_tree">
+            <field name="name">view_location_tree</field>
+            <field name="model">repeaters.location</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="station_ids"/>
+                    <field name="icon_type"/>
+                    <field name="display"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_location_form">
+            <field name="name">view_location_form</field>
+            <field name="model">repeaters.location</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h1>
+                            <field name="name" class="w-25"/>
+                        </h1>
+                        <group>
+                            <field name="display"/>
+                        </group>
+                        <group col="6">
+                            <field name="latitude"/>
+                            <field name="longitude"/>
+                            <field name="altitude"/>
+                        </group>
+                        <group>
+                            <field name="icon_type"/>
+                            <field name="station_ids"
+                                   options="{'no_create_edit': True}"/>
+                        </group>
+                        <notebook>
+                            <page string="Note">
+                                <field name="note"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -73,7 +73,7 @@ class QSO(models.Model):
     modulation_id = fields.Many2one(
         string="Modulation",
         help="Modulation",
-        comodel_name="stationlog.modulation",
+        comodel_name="hamutility.modulation",
         required=True,
         track_visibility="onchange"
     )

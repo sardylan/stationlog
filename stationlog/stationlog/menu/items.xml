@@ -26,11 +26,5 @@
                   action="action_logbook_list"
                   sequence="0"/>
 
-        <menuitem id="menu_config_modulation"
-                  name="Modulations"
-                  parent="menu_config"
-                  action="action_modulation_list"
-                  sequence="1"/>
-
     </data>
 </odoo>

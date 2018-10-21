@@ -46,7 +46,7 @@ SELECTION_MODULATION = [
 
 
 class Modulation(models.Model):
-    _name = "stationlog.modulation"
+    _name = "hamutility.modulation"
     _description = "Modulation"
     _order = "name ASC"
     _rec_name = "complete_name"
@@ -88,14 +88,34 @@ class Modulation(models.Model):
 
     complete_name = fields.Char(
         string="Complete name",
-        translate=False,
         compute="_compute_complete_name",
+        translate=False,
         store=True
     )
 
     note = fields.Html(
         string="Note"
     )
+
+    @api.model
+    def create(self, vals):
+        if "name" in vals and vals["name"]:
+            vals["name"] = vals["name"].strip().upper()
+
+        return super().create(vals)
+
+    @api.multi
+    def write(self, vals):
+        if "name" in vals and vals["name"]:
+            vals["name"] = vals["name"].strip().upper()
+
+        return super().write(vals)
+
+    @api.onchange("name")
+    def _onchange_name(self):
+        for rec in self:
+            if rec.name:
+                rec.name = rec.name.strip().upper()
 
     @api.depends("emission", "name")
     def _compute_complete_name(self):
@@ -105,8 +125,4 @@ class Modulation(models.Model):
     @api.depends("modulation", "signal", "information")
     def _compute_emission(self):
         for rec in self:
-            rec.emission = self._emission_string(rec.modulation, rec.signal, rec.information)
-
-    @staticmethod
-    def _emission_string(m, s, i):
-        return "%s%s%s" % (m, s, i)
+            rec.emission = "%s%s%s" % (rec.modulation, rec.signal, rec.information)

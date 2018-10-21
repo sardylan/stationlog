@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <menuitem id="menu_root"
+                  groups="group_reader"
+                  name="Repeaters"
+                  sequence="0"/>
+
+        <menuitem id="menu_location"
+                  name="Locations"
+                  parent="menu_root"
+                  sequence="0"/>
+
+        <menuitem id="menu_location_list"
+                  name="List"
+                  parent="menu_location"
+                  action="action_location_list"
+                  sequence="0"/>
+
+        <menuitem id="menu_station"
+                  name="Stations"
+                  parent="menu_root"
+                  sequence="1"/>
+
+        <menuitem id="menu_station_list"
+                  name="List"
+                  parent="menu_station"
+                  action="action_station_list"
+                  sequence="01"/>
+
+        <menuitem id="menu_appliance"
+                  name="Appliances"
+                  parent="menu_root"
+                  sequence="2"/>
+
+        <menuitem id="menu_appliance_list"
+                  name="List"
+                  parent="menu_appliance"
+                  action="action_appliance_list"
+                  sequence="0"/>
+
+        <menuitem id="menu_conference"
+                  name="Conferences"
+                  parent="menu_root"
+                  sequence="3"/>
+
+        <menuitem id="menu_conference_list"
+                  name="List"
+                  parent="menu_conference"
+                  action="action_conference_list"
+                  sequence="0"/>
+
+    </data>
+</odoo>

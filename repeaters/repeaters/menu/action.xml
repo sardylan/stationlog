@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <record model="ir.actions.act_window" id="action_location_list">
+            <field name="name">Locations</field>
+            <field name="res_model">repeaters.location</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="limit">20</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_station_list">
+            <field name="name">Stations</field>
+            <field name="res_model">repeaters.station</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="limit">20</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_appliance_list">
+            <field name="name">Appliances</field>
+            <field name="res_model">repeaters.appliance</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="limit">20</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_conference_list">
+            <field name="name">Conferences</field>
+            <field name="res_model">repeaters.conference</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="limit">20</field>
+        </record>
+
+    </data>
+</odoo>
