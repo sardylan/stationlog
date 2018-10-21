@@ -1,6 +1,6 @@
 {
     "name": "Station Log",
-    "version": "12.0.0.0.1",
+    "version": "12.0.0.9.0",
     "category": "Extra Tools",
     "summary": "HAM Station log",
     "depends": [
