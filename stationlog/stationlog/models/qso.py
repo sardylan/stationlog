@@ -220,6 +220,12 @@ class QSO(models.Model):
 
         return result
 
+    @api.onchange("callsign")
+    def _onchange_callsign(self):
+        for rec in self:
+            if rec.callsign:
+                rec.callsign = rec.callsign.strip().upper()
+
     @api.onchange("ts_start")
     def _onchange_start(self):
         for rec in self:
