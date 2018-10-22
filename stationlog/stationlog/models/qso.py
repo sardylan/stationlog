@@ -1,4 +1,4 @@
-from odoo import models, fields, api, _, SUPERUSER_ID
+from odoo import models, fields, api, _, ADMINUSER_ID
 from odoo.exceptions import ValidationError
 
 SELECTION_READABILITY = [
@@ -280,7 +280,7 @@ class QSO(models.Model):
         logbook_obj = self.env["stationlog.logbook"]
         logbook_domain = self.domain_logbook_id()
         logbook_id = logbook_obj.search(logbook_domain, limit=1)
-        if not logbook_id and self.env.uid != SUPERUSER_ID:
+        if not logbook_id and self.env.uid != ADMINUSER_ID:
             raise ValidationError(_("Unable to find a logbook"))
 
         return logbook_id.id

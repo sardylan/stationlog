@@ -17,6 +17,8 @@
         "views/logbook.xml",
         "views/qso.xml",
 
+        "wizard/dashboard.xml",
+
         "menu/action.xml",
         "menu/items.xml"
     ],

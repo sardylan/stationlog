@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <record model="ir.ui.view" id="wizard_dashboard_form">
+            <field name="name">wizard_dashboard_form</field>
+            <field name="model">stationlog.wizard_dashboard</field>
+            <field name="arch" type="xml">
+                <form string="Dashboard" create="false" edit="false" delete="false">
+                    <header>
+                        <field name="logbook_id"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="qso_count"/>
+                        </group>
+                        <group string="QSO count">
+                            <field name="modulation_qso_count_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="wizard_dashboard_qso_modulation_count_tree">
+            <field name="name">wizard_dashboard_qso_modulation_count_tree</field>
+            <field name="model">stationlog.wizard_dashboard_qso_modulation_count</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="modulation_id"/>
+                    <field name="qso_count"/>
+                    <button name="action_open"
+                            string="Open"
+                            type="object"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>
