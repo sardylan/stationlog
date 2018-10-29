@@ -1,5 +1,4 @@
-from odoo import models, fields, api, _, ADMINUSER_ID
-from odoo.exceptions import ValidationError
+from odoo import models, fields, api
 
 
 class Dashboard(models.TransientModel):
@@ -44,8 +43,8 @@ class Dashboard(models.TransientModel):
         logbook_obj = self.env["stationlog.logbook"]
         logbook_domain = self.domain_logbook_id()
         logbook_id = logbook_obj.search(logbook_domain, limit=1)
-        if not logbook_id and self.env.uid != ADMINUSER_ID:
-            raise ValidationError(_("Unable to find a logbook"))
+        if not logbook_id:
+            return False
 
         return logbook_id.id
 
