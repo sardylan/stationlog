@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <template id="template_qso_export_single">
+            <div>
+                <div class="stationlog-qso">
+                    <div class="stationlog-header">
+                        <div class="stationlog-station">
+                            <span class="stationlog-callsign">
+                                <t t-esc="qso_id.callsign"/>
+                            </span>
+                            <t t-if="qso_id.operator">
+                                Op.
+                                <span class="stationlog-name">
+                                    <t t-esc="qso_id.operator"/>
+                                </span>
+                            </t>
+                        </div>
+                        <div class="stationlog-datetime">
+                            <span class="stationlog-param">Start:</span>
+                            <t t-esc="qso_id.ts_start"/>
+                            <br/>
+                            <span class="stationlog-param">End:</span>
+                            <t t-esc="qso_id.ts_end"/>
+                        </div>
+                    </div>
+                    <div class="stationlog-info">
+                        <div class="stationlog-radio">
+                            <div>
+                                <span class="stationlog-param">Frequency:</span>
+                                <span class="stationlog-value">
+                                    <t t-esc="'%.3f' % float(qso_id.frequency / 1000000)"/>
+                                    MHz
+                                </span>
+                            </div>
+                            <div>
+                                <span class="stationlog-param">Modulation:</span>
+                                <span class="stationlog-value">
+                                    <t t-esc="qso_id.modulation_id.complete_name"/>
+                                </span>
+                            </div>
+                            <div>
+                                <span class="stationlog-param">Power:</span>
+                                <span class="stationlog-value">
+                                    <t t-esc="'%.01f' % qso_id.power"/>
+                                    W
+                                </span>
+                            </div>
+                        </div>
+                        <div class="stationlog-report">
+                            <span class="stationlog-param">RST:</span>
+                            RX
+                            <span class="stationlog-value">
+                                <t t-esc="qso_id.rx_rst"/>
+                            </span>
+                            - TX
+                            <span class="stationlog-value">
+                                <t t-esc="qso_id.tx_rst"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="stationlog-note">
+                        <t t-raw="qso_id.note"/>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="template_qso_export">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-foreach="docs" t-as="qso_id">
+                            <t t-call="stationlog.template_qso_export_single"/>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="template_qso_export_style_report" inherit_id="web.report_layout">
+            <xpath expr="//head" position="inside">
+                <link rel="stylesheet" type="text/css" href="/stationlog/static/src/css/export_qso.css"/>
+            </xpath>
+        </template>
+
+        <template id="template_qso_export_style_minimal" inherit_id="web.minimal_layout">
+            <xpath expr="//head" position="inside">
+                <link rel="stylesheet" type="text/css" href="/stationlog/static/src/css/export_qso.css"/>
+            </xpath>
+        </template>
+
+        <report id="report_qso"
+                string="QSO"
+                model="stationlog.qso"
+                report_type="qweb-pdf"
+                name="stationlog.template_qso_export"
+                attachment_use="True"/>
+
+    </data>
+</odoo>
