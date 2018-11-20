@@ -49,6 +49,12 @@ class QSO(models.Model):
         track_visibility="onchange"
     )
 
+    qth = fields.Char(
+        string="QTH",
+        help="QTH",
+        track_visibility="onchange"
+    )
+
     ts_start = fields.Datetime(
         string="Start datetime",
         help="Start datetime",
@@ -283,6 +289,15 @@ class QSO(models.Model):
             return False
 
         return logbook_id.id
+
+    def action_station_qrz_com(self):
+        self.ensure_one()
+
+        return {
+            "type": "ir.actions.act_url",
+            "target": "new",
+            "url": "https://qrz.com/db/%s" % self.callsign
+        }
 
     @staticmethod
     def _rst_string(r, s, t):

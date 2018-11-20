@@ -3,8 +3,8 @@
 <odoo>
     <data noupdate="0">
 
-        <record model="ir.ui.view" id="qso_tree">
-            <field name="name">qso</field>
+        <record model="ir.ui.view" id="view_qso_tree">
+            <field name="name">view_qso_tree</field>
             <field name="model">stationlog.qso</field>
             <field name="arch" type="xml">
                 <tree>
@@ -21,31 +21,36 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="qso_form">
-            <field name="name">qso</field>
+        <record model="ir.ui.view" id="view_qso_form">
+            <field name="name">view_qso_form</field>
             <field name="model">stationlog.qso</field>
             <field name="arch" type="xml">
                 <form>
                     <header>
+                        <button type="object"
+                                name="action_station_qrz_com"
+                                class="btn-primary"
+                                string="Open Station in QRZ.com"/>
                         <field name="logbook_id"/>
                     </header>
                     <sheet>
                         <h1>
-                            <field name="callsign" class="w-25"/>
+                            <field name="callsign" class="w-25" tabindex="1"/>
                         </h1>
                         <h2>
                             <label for="operator"/>
-                            <field name="operator" class="w-25"/>
+                            <field name="operator" class="w-25" tabindex="2"/>
                         </h2>
-                        <group>
-                            <field name="ts_start" class="w-50"/>
-                            <field name="ts_end" class="w-50"/>
+                        <group col="4">
+                            <field name="ts_start" tabindex="3"/>
+                            <field name="qth" tabindex="5"/>
+                            <field name="ts_end" tabindex="4"/>
                         </group>
                         <group col="4">
-                            <field name="frequency"/>
-                            <field name="modulation_id"/>
-                            <field name="power"/>
-                            <field name="mobile"/>
+                            <field name="frequency" tabindex="6"/>
+                            <field name="modulation_id" tabindex="8"/>
+                            <field name="power" tabindex="7"/>
+                            <field name="mobile" tabindex="9"/>
                         </group>
                         <group col="4" class="oe_read_only">
                             <field name="rx_rst"/>
@@ -56,36 +61,36 @@
                         <group class="oe_edit_only" col="4">
                             <label for="rx_r" string="Received RST"/>
                             <div>
-                                <field name="rx_r" nolabel="1" class="w-25"/>
-                                <field name="rx_s" nolabel="1" class="w-25"/>
-                                <field name="rx_t" nolabel="1" class="w-25"/>
+                                <field name="rx_r" nolabel="1" class="w-25" tabindex="10"/>
+                                <field name="rx_s" nolabel="1" class="w-25" tabindex="11"/>
+                                <field name="rx_t" nolabel="1" class="w-25" tabindex="12"/>
                             </div>
                             <label for="qrm" string="Disturbs"/>
                             <div>
                                 <label for="qrm"/>
-                                <field name="qrm"/>
+                                <field name="qrm" tabindex="16"/>
                                 <label for="qrn"/>
-                                <field name="qrn"/>
+                                <field name="qrn" tabindex="17"/>
                                 <label for="qsb"/>
-                                <field name="qsb"/>
+                                <field name="qsb" tabindex="18"/>
                             </div>
                             <label for="rx_r" string="Sent RST"/>
                             <div>
-                                <field name="tx_r" nolabel="1" class="w-25"/>
-                                <field name="tx_s" nolabel="1" class="w-25"/>
-                                <field name="tx_t" nolabel="1" class="w-25"/>
+                                <field name="tx_r" nolabel="1" class="w-25" tabindex="13"/>
+                                <field name="tx_s" nolabel="1" class="w-25" tabindex="14"/>
+                                <field name="tx_t" nolabel="1" class="w-25" tabindex="15"/>
                             </div>
                             <label for="qsl_sent" string="QSL Status"/>
                             <div>
                                 <label for="qsl_sent" string="TX"/>
-                                <field name="qsl_sent"/>
+                                <field name="qsl_sent" tabindex="19"/>
                                 <label for="qsl_received" string="RX"/>
-                                <field name="qsl_received"/>
+                                <field name="qsl_received" tabindex="20"/>
                             </div>
                         </group>
                         <notebook>
                             <page string="Note">
-                                <field name="note"/>
+                                <field name="note" tabindex="21"/>
                             </page>
                         </notebook>
                     </sheet>
@@ -97,8 +102,8 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="qso_calendar">
-            <field name="name">qso_calendar</field>
+        <record model="ir.ui.view" id="view_qso_calendar">
+            <field name="name">view_qso_calendar</field>
             <field name="model">stationlog.qso</field>
             <field name="arch" type="xml">
                 <calendar string="QSO"
@@ -108,6 +113,31 @@
                           mode="month">
                     <field name="short_desc"/>
                 </calendar>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_qso_search">
+            <field name="name">view_qso_search</field>
+            <field name="model">stationlog.qso</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="callsign"/>
+                    <field name="qth"/>
+                    <separator/>
+                    <field name="ts_start"/>
+                    <separator/>
+                    <field name="frequency"/>
+                    <field name="modulation_id"/>
+                    <field name="power"/>
+                    <separator/>
+                    <field name="rx_rst"/>
+                    <field name="tx_rst"/>
+                    <separator/>
+                    <field name="qsl_sent"/>
+                    <field name="qsl_received"/>
+                    <separator/>
+                    <field name="logbook_id"/>
+                </search>
             </field>
         </record>
 
