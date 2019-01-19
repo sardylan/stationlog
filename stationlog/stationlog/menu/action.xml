@@ -28,5 +28,13 @@
             <field name="limit">20</field>
         </record>
 
+        <record model="ir.actions.act_window" id="action_contest_list">
+            <field name="name">Contest</field>
+            <field name="res_model">stationlog.contest</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="domain">[]</field>
+            <field name="limit">20</field>
+        </record>
+
     </data>
 </odoo>

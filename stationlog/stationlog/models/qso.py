@@ -36,6 +36,12 @@ class QSO(models.Model):
         track_visibility="onchange"
     )
 
+    contest_id = fields.Many2one(
+        string="Contest",
+        help="Contest",
+        track_visibility="onchange"
+    )
+
     callsign = fields.Char(
         string="Callsign",
         help="Callsign",

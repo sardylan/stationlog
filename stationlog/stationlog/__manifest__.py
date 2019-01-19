@@ -13,9 +13,11 @@
 
         "security/access/logbook.xml",
         "security/access/qso.xml",
+        "security/access/contest.xml",
 
         "views/logbook.xml",
         "views/qso.xml",
+        "views/contest.xml",
 
         "reports/qso.xml",
 

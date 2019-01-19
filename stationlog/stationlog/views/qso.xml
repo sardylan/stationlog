@@ -16,6 +16,7 @@
                     <field name="rx_rst"/>
                     <field name="tx_rst"/>
                     <field name="qsl_status"/>
+                    <field name="contest_id"/>
                     <field name="logbook_id"/>
                 </tree>
             </field>
@@ -41,6 +42,9 @@
                             <label for="operator"/>
                             <field name="operator" class="w-25" tabindex="2"/>
                         </h2>
+                        <group>
+                            <field name="contest_id"/>
+                        </group>
                         <group col="4">
                             <field name="ts_start" tabindex="3"/>
                             <field name="qth" tabindex="5"/>
@@ -112,6 +116,7 @@
                           color="logbook_id"
                           mode="month">
                     <field name="short_desc"/>
+                    <field name="contest_id"/>
                 </calendar>
             </field>
         </record>
@@ -123,6 +128,8 @@
                 <search>
                     <field name="callsign"/>
                     <field name="qth"/>
+                    <separator/>
+                    <field name="contest_id"/>
                     <separator/>
                     <field name="ts_start"/>
                     <separator/>
