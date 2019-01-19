@@ -22,6 +22,7 @@
         "reports/qso.xml",
 
         "wizard/dashboard.xml",
+        "wizard/cabrillo_import.xml",
 
         "menu/action.xml",
         "menu/items.xml"

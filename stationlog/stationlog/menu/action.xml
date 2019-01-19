@@ -36,5 +36,14 @@
             <field name="limit">20</field>
         </record>
 
+        <record model="ir.actions.act_window" id="action_qso_import_cabrillo">
+            <field name="name">Import from Cabrillo</field>
+            <field name="res_model">stationlog.wizard_cabrillo_import</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="domain">[]</field>
+            <field name="target">inline</field>
+        </record>
+
     </data>
 </odoo>
