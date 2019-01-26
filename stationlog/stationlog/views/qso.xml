@@ -22,6 +22,20 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_qso_tree_contest">
+            <field name="name">view_qso_tree_contest</field>
+            <field name="model">stationlog.qso</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="callsign"/>
+                    <field name="ts_start"/>
+                    <field name="frequency"/>
+                    <field name="modulation_id"/>
+                    <field name="contest_id"/>
+                </tree>
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="view_qso_form">
             <field name="name">view_qso_form</field>
             <field name="model">stationlog.qso</field>

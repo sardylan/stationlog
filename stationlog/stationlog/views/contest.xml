@@ -11,6 +11,7 @@
                     <field name="name"/>
                     <field name="ts_start"/>
                     <field name="ts_end"/>
+                    <field name="qso_count"/>
                 </tree>
             </field>
         </record>
@@ -27,6 +28,10 @@
                         <group col="4">
                             <field name="ts_start"/>
                             <field name="ts_end"/>
+                        </group>
+                        <group>
+                            <field name="qso_ids"
+                                   context="{'tree_view_ref' : 'stationlog.view_qso_tree_contest'}"/>
                         </group>
                         <notebook>
                             <page string="Note">
