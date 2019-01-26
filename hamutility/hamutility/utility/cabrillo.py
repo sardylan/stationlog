@@ -4,8 +4,9 @@ from odoo import models, api
 from odoo.exceptions import ValidationError
 
 
-class Cabrillo(models.TransientModel):
+class Cabrillo(models.AbstractModel):
     _name = "hamutility.cabrillo"
+    _description = "Cabrillo log format parsing utilities"
 
     @api.model
     def parse_qso_line(self, line=""):

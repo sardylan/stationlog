@@ -9,6 +9,7 @@ _logger = logging.getLogger(__name__)
 
 class CabrilloImport(models.TransientModel):
     _name = "stationlog.wizard_cabrillo_import"
+    _description = "Wizard for importing contest QSOs from Cabrillo format"
 
     import_file = fields.Binary(
         string="File",
@@ -18,6 +19,13 @@ class CabrilloImport(models.TransientModel):
 
     import_file_name = fields.Char(
         string="Filename"
+    )
+
+    contest_id = fields.Many2one(
+        string="Contest",
+        help="Select contest for imported QSOs",
+        comodel_name="stationlog.contest",
+        required=True
     )
 
     power = fields.Float(
@@ -41,6 +49,8 @@ class CabrilloImport(models.TransientModel):
         self.ensure_one()
 
         if not self.import_file:
+            self.file_size = 0
+            self.qso_count = 0
             return
 
         file_content = base64.b64decode(self.import_file).decode()
@@ -108,6 +118,7 @@ class CabrilloImport(models.TransientModel):
                 callsign = cabrillo_row["rx_callsign"]
 
                 values = {
+                    "contest_id": self.contest_id.id,
                     "callsign": callsign,
                     "frequency": cabrillo_row["frequency"],
                     "modulation_id": modulation_id.id,

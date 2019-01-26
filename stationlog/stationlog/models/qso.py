@@ -47,6 +47,7 @@ class QSO(models.Model):
     contest_id = fields.Many2one(
         string="Contest",
         help="Contest",
+        comodel_name="stationlog.contest",
         track_visibility="onchange"
     )
 

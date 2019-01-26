@@ -3,6 +3,7 @@ from odoo import models, fields, api
 
 class Dashboard(models.TransientModel):
     _name = "stationlog.wizard_dashboard"
+    _description = "Main dashboard with QSOs summary"
 
     logbook_id = fields.Many2one(
         string="Logbook",
@@ -89,6 +90,7 @@ class Dashboard(models.TransientModel):
 
 class DashboardQsoModulationCount(models.TransientModel):
     _name = "stationlog.wizard_dashboard_qso_modulation_count"
+    _description = "Helper transient model for dashboard"
 
     wizard_id = fields.Many2one(
         string="Wizard",
