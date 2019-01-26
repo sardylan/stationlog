@@ -27,6 +27,14 @@ class QSO(models.Model):
     _description = "QSO"
     _order = "ts_start DESC, callsign ASC"
 
+    _sql_constraints = [
+        (
+            "callsign_ts_start_uniq",
+            "UNIQUE(callsign, ts_start)",
+            "QSO already registered"
+        )
+    ]
+
     logbook_id = fields.Many2one(
         string="Logbook",
         comodel_name="stationlog.logbook",
