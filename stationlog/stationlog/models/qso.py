@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from odoo import models, fields, api
 
 SELECTION_READABILITY = [
@@ -74,6 +76,7 @@ class QSO(models.Model):
         string="Start datetime",
         help="Start datetime",
         required=True,
+        default=lambda self: datetime.utcnow().replace(microsecond=0),
         track_visibility="onchange"
     )
 

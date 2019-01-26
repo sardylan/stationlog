@@ -9,8 +9,8 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
-                    <field name="ts_start"/>
-                    <field name="ts_end"/>
+                    <field name="ts_start" widget="datetime_tz"/>
+                    <field name="ts_end" widget="datetime_tz"/>
                     <field name="qso_count"/>
                 </tree>
             </field>
@@ -26,8 +26,8 @@
                             <field name="name" class="w-25"/>
                         </h1>
                         <group col="4">
-                            <field name="ts_start"/>
-                            <field name="ts_end"/>
+                            <field name="ts_start" widget="datetime_tz"/>
+                            <field name="ts_end" widget="datetime_tz"/>
                         </group>
                         <group>
                             <field name="qso_ids"
@@ -67,8 +67,8 @@
                 <search>
                     <field name="name"/>
                     <separator/>
-                    <field name="ts_start"/>
-                    <field name="ts_end"/>
+                    <field name="ts_start" widget="datetime_tz"/>
+                    <field name="ts_end" widget="datetime_tz"/>
                     <separator/>
                 </search>
             </field>

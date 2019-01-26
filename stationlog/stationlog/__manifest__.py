@@ -6,7 +6,8 @@
     "depends": [
         "mail",
         "snailmail",
-        "hamutility"
+        "hamutility",
+        "widget_datetime_tz"
     ],
     "data": [
         "security/groups.xml",
