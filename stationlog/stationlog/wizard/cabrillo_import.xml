@@ -9,13 +9,26 @@
             <field name="arch" type="xml">
                 <form string="Cabrillo Import" create="false" edit="false" delete="false">
                     <sheet>
-                        <!--<group>-->
-                            <!--<field name="qso_count"/>-->
-                        <!--</group>-->
-                        <!--<group string="QSO count">-->
-                            <!--<field name="modulation_qso_count_ids"/>-->
-                        <!--</group>-->
+                        <group>
+                            <field name="import_file_name"
+                                   attrs="{'invisible': True}"/>
+                            <field name="import_file"
+                                   widget="binary"
+                                   filename="import_file_name"/>
+                        </group>
+                        <group string="File infos" col="4">
+                            <field name="qso_count"/>
+                            <field name="file_size"/>
+                        </group>
+                        <group string="Other informations" col="4">
+                            <field name="power"/>
+                        </group>
                     </sheet>
+                    <footer>
+                        <button type="object"
+                                name="action_import"
+                                string="Import"/>
+                    </footer>
                 </form>
             </field>
         </record>
