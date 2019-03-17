@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <record model="ir.actions.act_window" id="action_qso_list">
+            <field name="name">QSOs</field>
+            <field name="res_model">award_naval.qso</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="domain">[]</field>
+            <field name="limit">20</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_qso_import">
+            <field name="name">QSOs</field>
+            <field name="res_model">award_naval.wizard_qso_import_adif</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>
