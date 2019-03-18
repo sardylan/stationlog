@@ -121,7 +121,7 @@ class QSOImportAdifWizard(models.TransientModel):
                 mode = "CW"
             elif qso["MODE"] in ["SSB", "USB", "LSB"]:
                 mode = "SSB"
-            elif qso["MODE"] in ["FT8", "PSK"]:
+            elif qso["MODE"] in ["FT8", "PSK", "RTTY"]:
                 mode = "DIGI"
             else:
                 raise ValueError("Mode %s not recognized" % qso["MODE"])
