@@ -7,12 +7,13 @@
             <field name="name">view_qso_tree</field>
             <field name="model">award_naval.qso</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree editable="top">
                     <field name="callsign"/>
                     <field name="ts" widget="datetime_tz"/>
                     <field name="band"/>
                     <field name="mode"/>
                     <field name="reference"/>
+                    <field name="reference_auto"/>
                     <field name="operator"/>
                 </tree>
             </field>

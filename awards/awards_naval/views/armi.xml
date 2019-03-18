@@ -10,6 +10,10 @@
                 <tree>
                     <field name="callsign"/>
                     <field name="reference"/>
+                    <field name="name"/>
+                    <field name="qualifica"/>
+                    <field name="marina"/>
+                    <field name="svc"/>
                 </tree>
             </field>
         </record>
@@ -23,8 +27,14 @@
                         <h1>
                             <field name="callsign" class="w-25"/>
                         </h1>
+                        <h2>
+                            <field name="reference" class="w-25"/>
+                        </h2>
                         <group>
-                            <field name="reference"/>
+                            <field name="name"/>
+                            <field name="qualifica"/>
+                            <field name="marina"/>
+                            <field name="svc"/>
                         </group>
                     </sheet>
                 </form>
@@ -38,6 +48,11 @@
                 <search>
                     <field name="callsign"/>
                     <field name="reference"/>
+                    <separator/>
+                    <field name="name"/>
+                    <field name="qualifica"/>
+                    <field name="marina"/>
+                    <field name="svc"/>
                 </search>
             </field>
         </record>
