@@ -59,5 +59,11 @@ class QSO(models.Model):
     )
 
     rawdata = fields.Char(
-        string="Raw data"
+        string="Raw data",
+        readonly=True
+    )
+
+    reference_auto = fields.Char(
+        string="Automatic reference",
+        readonly=True
     )

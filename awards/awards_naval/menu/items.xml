@@ -25,5 +25,16 @@
                   action="action_qso_import"
                   sequence="1"/>
 
+        <menuitem id="menu_armi"
+                  name="ARMI"
+                  parent="menu_root"
+                  sequence="1"/>
+
+        <menuitem id="menu_armi_list"
+                  name="List"
+                  parent="menu_armi"
+                  action="action_armi_list"
+                  sequence="0"/>
+
     </data>
 </odoo>

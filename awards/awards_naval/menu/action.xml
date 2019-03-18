@@ -9,6 +9,25 @@
             <field name="view_mode">tree,form,calendar</field>
             <field name="domain">[]</field>
             <field name="limit">20</field>
+            <field name="view_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('awards_naval.view_qso_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('awards_naval.view_qso_form')}),
+            (0, 0, {'view_mode': 'calendar', 'view_id': ref('awards_naval.view_qso_calendar')})
+            ]"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_armi_list">
+            <field name="name">ARMI callsigns</field>
+            <field name="res_model">awards_naval.armi</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="limit">20</field>
+            <field name="view_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('awards_naval.view_armi_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('awards_naval.view_armi_form')})
+            ]"/>
         </record>
 
         <record model="ir.actions.act_window" id="action_qso_import">

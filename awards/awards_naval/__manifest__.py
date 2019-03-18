@@ -10,8 +10,10 @@
     "data": [
         "security/groups.xml",
         "security/access/qso.xml",
+        "security/access/armi.xml",
 
         "views/qso.xml",
+        "views/armi.xml",
 
         "wizard/qso_import_adif.xml",
 
