@@ -16,6 +16,7 @@
                                    widget="binary"/>
                             <field name="operator"/>
                             <field name="reference_field"/>
+                            <field name="encoding"/>
                         </group>
                         <group>
                             <field name="file_size"/>

@@ -19,6 +19,12 @@ def json_converter(o):
         return o
 
 
+SELECTION_ENCODING = [
+    ("latin", "ISO-8859-1"),
+    ("utf8", "UTF-8")
+]
+
+
 class QSOImportAdifWizard(models.TransientModel):
     _name = "award_naval.wizard_qso_import_adif"
 
@@ -47,6 +53,12 @@ class QSOImportAdifWizard(models.TransientModel):
         required=True
     )
 
+    encoding = fields.Selection(
+        string="Encoding",
+        selection=SELECTION_ENCODING,
+        required=True
+    )
+
     raw_content = fields.Text(
         string="Raw content",
         readonly=True
@@ -57,7 +69,7 @@ class QSOImportAdifWizard(models.TransientModel):
         for rec in self:
             file_raw = rec.file_binary and base64.b64decode(rec.file_binary) or ""
             rec.file_size = len(file_raw)
-            rec.raw_content = file_raw[:1000]
+            rec.raw_content = file_raw[:10000]
 
     @api.onchange("operator")
     def onchange_operator(self):
@@ -78,10 +90,17 @@ class QSOImportAdifWizard(models.TransientModel):
         adif_utility = self.env["hamutility.adif"]
         qso_obj = self.env["award_naval.qso"]
 
-        file_raw = base64.b64decode(self.file_binary).decode("latin")
-        adif = adif_utility.parse_file_adif(file_raw)
+        file_raw = base64.b64decode(self.file_binary)
+        file_string = file_raw.decode(self.encoding)
+        adif = adif_utility.parse_file_adif(file_string)
+
+        _logger.info("ADIF header: %s" % json.dumps(adif["headers"], default=json_converter, indent=4))
+        _logger.info("ADIF QSO count: %d" % len(adif["qso"]))
 
         reference_field = self.reference_field.strip().upper()
+
+        count_new = 0
+        count_updated = 0
 
         for qso in adif["qso"]:
             ts = datetime.datetime(
@@ -93,13 +112,16 @@ class QSOImportAdifWizard(models.TransientModel):
                 second=qso["TIME_ON"].second
             )
 
+            if "BAND" not in qso:
+                raise ValueError("QSO without band")
+
             band = qso["BAND"].lower()
 
             if qso["MODE"] in ["CW"]:
                 mode = "CW"
             elif qso["MODE"] in ["SSB", "USB", "LSB"]:
                 mode = "SSB"
-            elif qso["MODE"] in ["FT8"]:
+            elif qso["MODE"] in ["FT8", "PSK"]:
                 mode = "DIGI"
             else:
                 raise ValueError("Mode %s not recognized" % qso["MODE"])
@@ -123,8 +145,17 @@ class QSOImportAdifWizard(models.TransientModel):
             ])
 
             if not qso_id:
-                qso_obj.create(values)
+                qso_id = qso_obj.create(values)
+                count_new += 1
             else:
                 qso_id.write(values)
+                count_updated += 1
 
-        _logger.info(adif)
+            _logger.info("QSO: %s" % qso_id.callsign)
+
+        _logger.info("QSO count: %d new - %d updated" % (count_new, count_updated))
+
+        return {
+            "type": "ir.actions.client",
+            "tag": "reload",
+        }
