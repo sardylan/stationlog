@@ -23,9 +23,9 @@ class QSO(models.Model):
     _name = "award_naval.qso"
     _order = "ts ASC"
 
-    _sql_constraints = [
-        ("callsign_ts_mode_uniq", "UNIQUE(callsign, ts, mode)", "Record already present")
-    ]
+    # _sql_constraints = [
+    #     ("callsign_ts_mode_uniq", "UNIQUE(callsign, ts, mode)", "Record already present")
+    # ]
 
     callsign = fields.Char(
         string="Callsign",
