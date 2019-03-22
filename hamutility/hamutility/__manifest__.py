@@ -10,8 +10,12 @@
     "data": [
         "security/groups.xml",
         "security/access/modulation.xml",
+        "security/access/country.xml",
 
         "views/modulation.xml",
+        "views/country.xml",
+
+        "wizard/import_prefix.xml",
 
         "menu/action.xml",
         "menu/items.xml"
