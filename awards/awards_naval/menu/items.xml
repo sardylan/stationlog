@@ -25,10 +25,10 @@
                   action="action_qso_import"
                   sequence="1"/>
 
-        <menuitem id="menu_qso_update_reference_auto"
-                  name="Update Auto Reference"
+        <menuitem id="menu_qso_tools"
+                  name="Tools"
                   parent="menu_qso"
-                  action="action_qso_update_reference_auto"
+                  action="action_qso_tools"
                   sequence="2"/>
 
         <menuitem id="menu_armi"

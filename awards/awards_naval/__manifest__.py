@@ -16,6 +16,7 @@
         "views/armi.xml",
 
         "wizard/qso_import_adif.xml",
+        "wizard/qso_tools.xml",
 
         "menu/action.xml",
         "menu/items.xml"

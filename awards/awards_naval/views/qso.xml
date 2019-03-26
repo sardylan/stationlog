@@ -12,8 +12,11 @@
                     <field name="ts" widget="datetime_tz"/>
                     <field name="band"/>
                     <field name="mode"/>
+                    <field name="rst_tx"/>
+                    <field name="rst_rx"/>
                     <field name="reference"/>
                     <field name="reference_auto"/>
+                    <field name="dupe"/>
                     <field name="operator"/>
                 </tree>
             </field>
@@ -38,6 +41,11 @@
                         </group>
                         <group>
                             <field name="operator"/>
+                        </group>
+                        <group col="4">
+                            <field name="rst_tx"/>
+                            <field name="rst_rx"/>
+                            <field name="dupe"/>
                         </group>
                         <group>
                             <field name="reference_auto"/>
@@ -77,6 +85,8 @@
                     <field name="band"/>
                     <field name="mode"/>
                     <field name="reference"/>
+                    <separator/>
+                    <field name="dupe"/>
                     <separator/>
                     <field name="operator"/>
                     <separator/>

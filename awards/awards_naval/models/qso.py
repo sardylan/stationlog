@@ -1,3 +1,4 @@
+import datetime
 import logging
 
 from odoo import models, fields, api
@@ -68,6 +69,29 @@ class QSO(models.Model):
         readonly=True
     )
 
+    rst_tx = fields.Char(
+        string="RST TX",
+        compute="compute_rst",
+        readonly=True
+    )
+
+    rst_rx = fields.Char(
+        string="RST RX",
+        compute="compute_rst",
+        readonly=True
+    )
+
+    dupe = fields.Boolean(
+        string="DUPE",
+        readonly=True,
+    )
+
+    def compute_rst(self):
+        for rec in self:
+            rst = rec.mode in ["CW", "DIGI"] and "599" or "59"
+            rec.rst_tx = rst
+            rec.rst_rx = rst
+
     @api.model
     def action_update_reference_auto(self):
         _logger.info("Updating Auto Reference")
@@ -97,3 +121,111 @@ class QSO(models.Model):
                     continue
 
         _logger.info("Registered %d references in %d QSO" % (count, qso_count))
+
+    @api.model
+    def action_update_missing_reference(self):
+        _logger.info("Updating Missing Reference")
+
+        qso_obj = self.env["award_naval.qso"]
+
+        qso_ids = qso_obj.search([
+            ("reference", "!=", None)
+        ])
+
+        ref_dict = {}
+        for qso_id in qso_ids:
+            ref_dict[qso_id.callsign] = qso_id.reference
+
+        for callsign, reference in ref_dict.items():
+            qso_ids = qso_obj.search([
+                ("callsign", "ilike", callsign),
+                "|",
+                ("reference", "=", False),
+                ("reference", "=", "")
+            ])
+
+            qso_ids.write({
+                "reference": reference
+            })
+
+    @api.model
+    def action_compute_dupe(self):
+        qso_ids = self.search([])
+        qso_ids.write({"dupe": False})
+
+        qso_first = self.search([], limit=1, order="ts ASC")
+        qso_last = self.search([], limit=1, order="ts DESC")
+
+        datetime_first = qso_first.ts.replace(hour=0, minute=0, second=0, microsecond=0)
+        datetime_last = qso_last.ts.replace(hour=23, minute=59, second=59, microsecond=999999)
+
+        datetime_interval = datetime_last - datetime_first
+        days = datetime_interval.days + 1
+
+        callsign_list = [x["callsign"] for x in self.read_group(domain=[], fields=["callsign"], groupby=["callsign"]) if
+                         x["callsign"]]
+
+        for callsign in callsign_list:
+            for i in range(0, days):
+                datetime_day = datetime_first + datetime.timedelta(days=i)
+
+                ts_start = datetime_day.strftime("%Y-%m-%d 00:00:00")
+                ts_end = datetime_day.strftime("%Y-%m-%d 23:59:59")
+
+                self.check_dupe_cw(callsign, datetime_day, ts_end, ts_start)
+                self.check_dupe_ssb(callsign, datetime_day, ts_end, ts_start)
+                self.check_dupe_digi(callsign, datetime_day, ts_end, ts_start)
+
+    def check_dupe_cw(self, callsign, datetime_day, ts_end, ts_start):
+        qso_ids = self.search([
+            ("callsign", "=", callsign),
+            ("mode", "=", "CW"),
+            ("ts", ">=", ts_start),
+            ("ts", "<=", ts_end),
+        ], order="ts ASC")
+
+        if len(qso_ids) > 1:
+            _logger.info("DUPE for %s on %s in CW with %d QSO" % (
+                callsign, datetime_day.strftime("%Y-%m-%d"), len(qso_ids)
+            ))
+
+            count = 0
+            for qso_id in qso_ids:
+                qso_id.dupe = bool(count > 0)
+                count += 1
+
+    def check_dupe_ssb(self, callsign, datetime_day, ts_end, ts_start):
+        qso_ids = self.search([
+            ("callsign", "=", callsign),
+            ("mode", "=", "SSB"),
+            ("ts", ">=", ts_start),
+            ("ts", "<=", ts_end),
+        ], order="ts ASC")
+
+        if len(qso_ids) > 1:
+            _logger.info("DUPE for %s on %s in SSB with %d QSO" % (
+                callsign, datetime_day.strftime("%Y-%m-%d"), len(qso_ids)
+            ))
+
+            count = 0
+            for qso_id in qso_ids:
+                qso_id.dupe = bool(count > 0)
+                count += 1
+
+    def check_dupe_digi(self, callsign, datetime_day, ts_end, ts_start):
+        qso_ids = self.search([
+            ("callsign", "=", callsign),
+            ("mode", "=", "DIGI"),
+            ("ts", ">=", ts_start),
+            ("ts", "<=", ts_end),
+        ], order="ts ASC")
+
+        if len(qso_ids) > 1:
+            _logger.info("DUPE for %s on %s in DIGI with %d QSO" % (
+                callsign, datetime_day.strftime("%Y-%m-%d"), len(qso_ids)
+            ))
+
+            count = 0
+            for qso_id in qso_ids:
+                qso_id.dupe = bool(count > 0)
+                count += 1

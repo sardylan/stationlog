@@ -37,10 +37,11 @@
             <field name="target">new</field>
         </record>
 
-        <record model="ir.actions.server" id="action_qso_update_reference_auto">
-            <field name="name">Update Auto Reference</field>
-            <field name="model_id" ref="model_award_naval_qso"/>
-            <field name="code">model.action_update_reference_auto()</field>
+        <record model="ir.actions.act_window" id="action_qso_tools">
+            <field name="name">QSO Tools</field>
+            <field name="res_model">awards_naval.wizard_qso_tools</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
         </record>
 
     </data>
