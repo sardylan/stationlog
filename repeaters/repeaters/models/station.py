@@ -8,10 +8,13 @@ class Station(models.Model):
     _rec_name = "callsign"
     _order = "callsign ASC"
 
+    _sql_constraints = [
+        ("callsign_uniq", "UNIQUE(callsign)", "Callsign already present")
+    ]
+
     callsign = fields.Char(
         string="Callsign",
         required=True,
-        unique=True,
         translate=False,
         track_visibility="onchange"
     )
@@ -51,7 +54,7 @@ class Station(models.Model):
         return super().write(vals)
 
     @api.onchange("callsign")
-    def _onchange_callsign(self):
+    def onchange_callsign(self):
         for rec in self:
             if rec.callsign:
                 rec.callsign = rec.callsign.strip().upper()

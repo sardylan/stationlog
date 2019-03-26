@@ -196,7 +196,7 @@ class Appliance(models.Model):
     )
 
     @api.onchange("type")
-    def _onchange_type(self):
+    def onchange_type(self):
         for rec in self:
             if rec.type == "beacon":
                 rec.frequency_rx = False
@@ -204,7 +204,7 @@ class Appliance(models.Model):
                 rec.frequency_rx = rec.frequency_tx
 
     @api.onchange("frequency_tx")
-    def _onchange_frequency_tx(self):
+    def onchange_frequency_tx(self):
         for rec in self:
             if rec.type == "simplex":
                 rec.frequency_rx = rec.frequency_tx

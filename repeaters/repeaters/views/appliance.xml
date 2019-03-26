@@ -83,5 +83,23 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_appliance_search">
+            <field name="name">view_appliance_search</field>
+            <field name="model">repeaters.appliance</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="station_id"/>
+                    <separator/>
+                    <field name="frequency_tx"/>
+                    <field name="frequency_rx"/>
+                    <field name="modulation_id"/>
+                    <separator/>
+                    <field name="type"/>
+                    <separator/>
+                    <field name="conference_id"/>
+                </search>
+            </field>
+        </record>
+
     </data>
 </odoo>

@@ -45,5 +45,17 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_station_search">
+            <field name="name">view_station_search</field>
+            <field name="model">repeaters.station</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="callsign"/>
+                    <separator/>
+                    <field name="location_id"/>
+                </search>
+            </field>
+        </record>
+
     </data>
 </odoo>

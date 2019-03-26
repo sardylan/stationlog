@@ -52,5 +52,21 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_location_search">
+            <field name="name">view_location_search</field>
+            <field name="model">repeaters.location</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <separator/>
+                    <field name="display"/>
+                    <separator/>
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                    <field name="altitude"/>
+                </search>
+            </field>
+        </record>
+
     </data>
 </odoo>
