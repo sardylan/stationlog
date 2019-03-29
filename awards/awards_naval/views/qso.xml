@@ -8,8 +8,9 @@
             <field name="model">award_naval.qso</field>
             <field name="arch" type="xml">
                 <tree editable="top">
-                    <field name="callsign"/>
                     <field name="ts" widget="datetime_tz"/>
+                    <field name="callsign"/>
+                    <field name="country_id"/>
                     <field name="band"/>
                     <field name="mode"/>
                     <field name="rst_tx"/>
@@ -31,6 +32,9 @@
                         <h1>
                             <field name="callsign" class="w-25"/>
                         </h1>
+                        <h2>
+                            <field name="country_id" class="w-25"/>
+                        </h2>
                         <group>
                             <field name="ts" widget="datetime_tz"/>
                         </group>
@@ -67,6 +71,7 @@
                           mode="week"
                           color="mode">
                     <field name="callsign"/>
+                    <field name="country_id"/>
                     <field name="mode"/>
                     <field name="band"/>
                 </calendar>
@@ -79,6 +84,7 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="callsign"/>
+                    <field name="country_id"/>
                     <separator/>
                     <field name="ts"/>
                     <separator/>

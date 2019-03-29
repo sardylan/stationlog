@@ -92,6 +92,22 @@ class QSO(models.Model):
             rec.rst_tx = rst
             rec.rst_rx = rst
 
+    country_id = fields.Many2one(
+        string="Country",
+        comodel_name="hamutility.country",
+        compute="_compute_country",
+        readonly=True,
+        store=True
+    )
+
+    @api.depends("callsign")
+    def _compute_country(self):
+        utility_callsign_onj = self.env["hamutility.utility_callsign"]
+
+        for rec in self:
+            if rec and rec.callsign:
+                rec.country_id = utility_callsign_onj.get_country(rec.callsign)
+
     @api.model
     def action_update_reference_auto(self):
         _logger.info("Updating Auto Reference")
