@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="1">
+
+        <record id="hamutility_cq_zone_1" model="hamutility.cq_zone">
+            <field name="number">1</field>
+        </record>
+        <record id="hamutility_cq_zone_2" model="hamutility.cq_zone">
+            <field name="number">2</field>
+        </record>
+        <record id="hamutility_cq_zone_3" model="hamutility.cq_zone">
+            <field name="number">3</field>
+        </record>
+        <record id="hamutility_cq_zone_4" model="hamutility.cq_zone">
+            <field name="number">4</field>
+        </record>
+        <record id="hamutility_cq_zone_5" model="hamutility.cq_zone">
+            <field name="number">5</field>
+        </record>
+        <record id="hamutility_cq_zone_6" model="hamutility.cq_zone">
+            <field name="number">6</field>
+        </record>
+        <record id="hamutility_cq_zone_7" model="hamutility.cq_zone">
+            <field name="number">7</field>
+        </record>
+        <record id="hamutility_cq_zone_8" model="hamutility.cq_zone">
+            <field name="number">8</field>
+        </record>
+        <record id="hamutility_cq_zone_9" model="hamutility.cq_zone">
+            <field name="number">9</field>
+        </record>
+        <record id="hamutility_cq_zone_10" model="hamutility.cq_zone">
+            <field name="number">10</field>
+        </record>
+        <record id="hamutility_cq_zone_11" model="hamutility.cq_zone">
+            <field name="number">11</field>
+        </record>
+        <record id="hamutility_cq_zone_12" model="hamutility.cq_zone">
+            <field name="number">12</field>
+        </record>
+        <record id="hamutility_cq_zone_13" model="hamutility.cq_zone">
+            <field name="number">13</field>
+        </record>
+        <record id="hamutility_cq_zone_14" model="hamutility.cq_zone">
+            <field name="number">14</field>
+        </record>
+        <record id="hamutility_cq_zone_15" model="hamutility.cq_zone">
+            <field name="number">15</field>
+        </record>
+        <record id="hamutility_cq_zone_16" model="hamutility.cq_zone">
+            <field name="number">16</field>
+        </record>
+        <record id="hamutility_cq_zone_17" model="hamutility.cq_zone">
+            <field name="number">17</field>
+        </record>
+        <record id="hamutility_cq_zone_18" model="hamutility.cq_zone">
+            <field name="number">18</field>
+        </record>
+        <record id="hamutility_cq_zone_19" model="hamutility.cq_zone">
+            <field name="number">19</field>
+        </record>
+        <record id="hamutility_cq_zone_20" model="hamutility.cq_zone">
+            <field name="number">20</field>
+        </record>
+        <record id="hamutility_cq_zone_21" model="hamutility.cq_zone">
+            <field name="number">21</field>
+        </record>
+        <record id="hamutility_cq_zone_22" model="hamutility.cq_zone">
+            <field name="number">22</field>
+        </record>
+        <record id="hamutility_cq_zone_23" model="hamutility.cq_zone">
+            <field name="number">23</field>
+        </record>
+        <record id="hamutility_cq_zone_24" model="hamutility.cq_zone">
+            <field name="number">24</field>
+        </record>
+        <record id="hamutility_cq_zone_25" model="hamutility.cq_zone">
+            <field name="number">25</field>
+        </record>
+        <record id="hamutility_cq_zone_26" model="hamutility.cq_zone">
+            <field name="number">26</field>
+        </record>
+        <record id="hamutility_cq_zone_27" model="hamutility.cq_zone">
+            <field name="number">27</field>
+        </record>
+        <record id="hamutility_cq_zone_28" model="hamutility.cq_zone">
+            <field name="number">28</field>
+        </record>
+        <record id="hamutility_cq_zone_29" model="hamutility.cq_zone">
+            <field name="number">29</field>
+        </record>
+        <record id="hamutility_cq_zone_30" model="hamutility.cq_zone">
+            <field name="number">30</field>
+        </record>
+        <record id="hamutility_cq_zone_31" model="hamutility.cq_zone">
+            <field name="number">31</field>
+        </record>
+        <record id="hamutility_cq_zone_32" model="hamutility.cq_zone">
+            <field name="number">32</field>
+        </record>
+        <record id="hamutility_cq_zone_33" model="hamutility.cq_zone">
+            <field name="number">33</field>
+        </record>
+        <record id="hamutility_cq_zone_34" model="hamutility.cq_zone">
+            <field name="number">34</field>
+        </record>
+        <record id="hamutility_cq_zone_35" model="hamutility.cq_zone">
+            <field name="number">35</field>
+        </record>
+        <record id="hamutility_cq_zone_36" model="hamutility.cq_zone">
+            <field name="number">36</field>
+        </record>
+        <record id="hamutility_cq_zone_37" model="hamutility.cq_zone">
+            <field name="number">37</field>
+        </record>
+        <record id="hamutility_cq_zone_38" model="hamutility.cq_zone">
+            <field name="number">38</field>
+        </record>
+        <record id="hamutility_cq_zone_39" model="hamutility.cq_zone">
+            <field name="number">39</field>
+        </record>
+        <record id="hamutility_cq_zone_40" model="hamutility.cq_zone">
+            <field name="number">40</field>
+        </record>
+
+    </data>
+</odoo>
