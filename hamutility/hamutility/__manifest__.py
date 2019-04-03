@@ -18,7 +18,10 @@
         "wizard/import_prefix.xml",
 
         "menu/action.xml",
-        "menu/items.xml"
+        "menu/items.xml",
+
+        "data/cq_zone.xml",
+        "data/itu_zone.xml"
     ],
     "application": False
 }
