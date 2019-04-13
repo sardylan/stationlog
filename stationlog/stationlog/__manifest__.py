@@ -6,6 +6,8 @@
     "depends": [
         "mail",
         "snailmail",
+        "web_responsive",
+        "base_technical_features",
         "hamutility",
         "widget_datetime_tz"
     ],
