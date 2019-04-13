@@ -3,6 +3,7 @@ from odoo import models, api
 
 class CallsignUtility(models.AbstractModel):
     _name = "hamutility.utility_callsign"
+    _description = "Utility for searching related country related to callsign"
 
     @api.model
     def get_country(self, callsign=""):

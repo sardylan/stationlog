@@ -11,6 +11,7 @@ from odoo.exceptions import ValidationError
 
 class ImportPrefix(models.TransientModel):
     _name = "hamutility.wizard_import_prefix"
+    _description = "Wizard user for import of official ITU XLSX countries file"
 
     LETTERS = string.digits + string.ascii_uppercase
 
