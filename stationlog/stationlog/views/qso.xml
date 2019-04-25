@@ -46,6 +46,10 @@
                                 name="action_station_qrz_com"
                                 class="btn-primary"
                                 string="Open Station in QRZ.com"/>
+                        <button type="object"
+                                name="action_create_similar"
+                                class="btn-warning"
+                                string="Crete similar"/>
                         <field name="logbook_id"/>
                     </header>
                     <sheet>
@@ -56,9 +60,6 @@
                             <label for="operator"/>
                             <field name="operator" class="w-25"/>
                         </h2>
-                        <group>
-                            <field name="contest_id"/>
-                        </group>
                         <group col="4">
                             <field name="ts_start" widget="datetime_tz"/>
                             <field name="qth"/>
@@ -105,6 +106,9 @@
                                 <label for="qsl_received" string="RX"/>
                                 <field name="qsl_received"/>
                             </div>
+                        </group>
+                        <group>
+                            <field name="contest_id"/>
                         </group>
                         <notebook>
                             <page string="Note">

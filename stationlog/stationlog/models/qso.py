@@ -57,18 +57,21 @@ class QSO(models.Model):
         string="Callsign",
         help="Callsign",
         required=True,
+        copy=False,
         track_visibility="onchange"
     )
 
     operator = fields.Char(
         string="Op.",
         help="Operator name",
+        copy=False,
         track_visibility="onchange"
     )
 
     qth = fields.Char(
         string="QTH",
         help="QTH",
+        copy=False,
         track_visibility="onchange"
     )
 
@@ -315,6 +318,38 @@ class QSO(models.Model):
             "type": "ir.actions.act_url",
             "target": "new",
             "url": "https://qrz.com/db/%s" % self.callsign
+        }
+
+    def action_create_similar(self):
+        self.ensure_one()
+
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Create similar QSO",
+            "res_model": self._name,
+            "view_type": "form",
+            "view_mode": "form",
+            "context": {
+                "default_logbook_id": self.logbook_id.id,
+                "default_contest_id": self.contest_id.id,
+                "default_ts_start": self.ts_start,
+                "default_ts_end": self.ts_end,
+                "default_frequency": self.frequency,
+                "default_modulation_id": self.modulation_id.id,
+                "default_power": self.power,
+                "default_rx_r": self.rx_r,
+                "default_rx_s": self.rx_s,
+                "default_rx_t": self.rx_t,
+                "default_tx_r": self.tx_r,
+                "default_tx_s": self.tx_s,
+                "default_tx_t": self.tx_t,
+                "default_qrm": self.qrm,
+                "default_qrn": self.qrn,
+                "default_qsb": self.qsb,
+                "default_qsl_sent": self.qsl_sent,
+                "default_qsl_received": self.qsl_received,
+                "default_note": self.note
+            },
         }
 
     @staticmethod
