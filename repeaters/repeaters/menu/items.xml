@@ -28,7 +28,7 @@
                   name="List"
                   parent="menu_station"
                   action="action_station_list"
-                  sequence="01"/>
+                  sequence="0"/>
 
         <menuitem id="menu_appliance"
                   name="Appliances"
