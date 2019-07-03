@@ -21,12 +21,11 @@ class Location(models.Model):
         track_visibility="onchange"
     )
 
-    icon_type = fields.Many2one(
-        string="Icon type",
-        help="Icon type",
+    location_icon_id = fields.Many2one(
+        string="Icon",
+        help="Icon",
         comodel_name="repeaters.location_icon",
         required=True,
-        default=lambda self: self.env.ref("repeaters.location_icon_default"),
         track_visibility="onchange"
     )
 
