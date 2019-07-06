@@ -21,7 +21,9 @@
         "views/conference.xml",
 
         "menu/action.xml",
-        "menu/items.xml"
+        "menu/items.xml",
+
+        "data/location.xml"
     ],
     "application": True
 }

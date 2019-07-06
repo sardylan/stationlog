@@ -1,15 +1,5 @@
 from odoo import models, fields
 
-SELECTION_ICON_TYPE = [
-    ("generic", "Generic"),
-    ("analog", "Analog FM"),
-    ("dstar", "D-Star"),
-    ("dmr", "DMR"),
-    ("c4fm", "C4FM"),
-    ("aprs12", "APRS 1.2 kb/s"),
-    ("aprs96", "APRS 9.6 kb/s")
-]
-
 
 class Location(models.Model):
     _name = "repeaters.location"
@@ -31,12 +21,12 @@ class Location(models.Model):
         track_visibility="onchange"
     )
 
-    icon_type = fields.Selection(
+    icon_type = fields.Many2one(
         string="Icon type",
         help="Icon type",
-        selection=SELECTION_ICON_TYPE,
+        comodel_name="repeaters.location_icon",
         required=True,
-        default="generic",
+        default=lambda self: self.env.ref("repeaters.location_icon_default"),
         track_visibility="onchange"
     )
 
@@ -72,4 +62,19 @@ class Location(models.Model):
         string="Note",
         help="Note",
         track_visibility="onchange"
+    )
+
+
+class LocationIcon(models.Model):
+    _name = "repeaters.location_icon"
+    _description = "Location icon"
+
+    _sql_constraints = [
+        ("name_uniq", "UNIQUE(name)", "Icon name already exists")
+    ]
+
+    name = fields.Char(
+        string="Name",
+        help="Name of the icon",
+        required=True
     )

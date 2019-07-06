@@ -42,9 +42,6 @@
                         <group>
                             <field name="modulation_id"
                                    options="{'no_create_edit': True}"/>
-                            <field name="aux_modulation_ids"
-                                   widget="many2many_tags"
-                                   options="{'no_create_edit': True}"/>
                         </group>
                         <notebook string="Other configurations">
                             <page string="Squelches">

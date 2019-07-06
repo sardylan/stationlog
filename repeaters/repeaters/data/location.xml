@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <record model="repeaters.location_icon" id="location_icon_default">
+            <field name="name">Default</field>
+        </record>
+
+    </data>
+</odoo>

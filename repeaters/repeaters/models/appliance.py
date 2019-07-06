@@ -142,16 +142,6 @@ class Appliance(models.Model):
         track_visibility="onchange"
     )
 
-    aux_modulation_ids = fields.Many2many(
-        string="Auxiliary Modulations",
-        help="Auxiliary Modulations",
-        relation="repeaters_appliance_hamutility_modulation_rel_aux",
-        comodel_name="hamutility.modulation",
-        column1="appliance_id",
-        column2="modulation_id",
-        track_visibility="onchange"
-    )
-
     squelch_tx_type = fields.Selection(
         string="TX Squelch type",
         help="TX Squelch type",
