@@ -1,4 +1,8 @@
+import logging
+
 from odoo import models, fields
+
+_logger = logging.getLogger(__name__)
 
 
 class Location(models.Model):
@@ -49,6 +53,11 @@ class Location(models.Model):
         track_visibility="onchange"
     )
 
+    position = fields.Char(
+        string="Position",
+        help="Location position"
+    )
+
     station_ids = fields.One2many(
         string="Stations",
         help="Installed stations",
@@ -62,6 +71,21 @@ class Location(models.Model):
         help="Note",
         track_visibility="onchange"
     )
+
+    def write(self, vals):
+        _logger.info(vals)
+        return super().write(vals)
+
+    # @api.depends("latitude", "longitude", "altitude")
+    # def compute_position(self):
+    #     for rec in self:
+    #         rec.position = json.dumps({
+    #             "position": {
+    #                 "lat": rec.latitude,
+    #                 "lng": rec.longitude
+    #             },
+    #             "zoom": 16,
+    #         })
 
 
 class LocationIcon(models.Model):

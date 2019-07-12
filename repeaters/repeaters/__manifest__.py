@@ -6,6 +6,7 @@
     "depends": [
         "mail",
         "snailmail",
+        "widget_googlemaps",
         "hamutility"
     ],
     "data": [

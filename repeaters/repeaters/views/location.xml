@@ -35,7 +35,9 @@
                             <field name="altitude"/>
                         </group>
                         <group>
-                            <field name="icon_type"/>
+                            <field name="position"
+                                   widget="googlemaps"
+                                   options="{'mode': 'marker'}"/>
                         </group>
                         <notebook>
                             <page name="station" string="Stations">
