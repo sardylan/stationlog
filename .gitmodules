@@ -10,3 +10,7 @@
 	path = server-ux
 	url = https://github.com/OCA/server-ux.git
 	branch = 12.0
+[submodule "hamutility"]
+	path = hamutility
+	url = https://github.com/sardylan/hamutility.git
+	branch = 12.0
