@@ -33,20 +33,6 @@ class Location(models.Model):
         track_visibility="onchange"
     )
 
-    latitude = fields.Float(
-        string="Latitude",
-        help="Latitude",
-        digits=(9, 6),
-        track_visibility="onchange"
-    )
-
-    longitude = fields.Float(
-        string="Longitude",
-        help="Longitude",
-        digits=(9, 6),
-        track_visibility="onchange"
-    )
-
     altitude = fields.Integer(
         string="Altitude",
         help="Altitude",
@@ -55,7 +41,9 @@ class Location(models.Model):
 
     position = fields.Char(
         string="Position",
-        help="Location position"
+        help="Location position",
+        required=True,
+        default=lambda self: self.env["widget_googlemaps.utility_googlemaps"].compute_default_position_value()
     )
 
     station_ids = fields.One2many(
@@ -71,6 +59,30 @@ class Location(models.Model):
         help="Note",
         track_visibility="onchange"
     )
+
+    latitude = fields.Float(
+        string="Latitude",
+        help="Latitude",
+        digits=(9, 6),
+        readonly=True,
+        compute="compute_coordinates"
+    )
+
+    longitude = fields.Float(
+        string="Longitude",
+        help="Longitude",
+        digits=(9, 6),
+        readonly=True,
+        compute="compute_coordinates"
+    )
+
+    def compute_coordinates(self):
+        googlemaps_utility = self.env["widget_googlemaps.utility_googlemaps"]
+
+        for rec in self:
+            latitude, longitude = googlemaps_utility.get_coordinates_from_position(rec.position)
+            rec.latitude = latitude
+            rec.longitude = longitude
 
 
 class LocationIcon(models.Model):
