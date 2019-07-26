@@ -6,7 +6,7 @@
         <menuitem id="menu_root"
                   name="Stations"
                   web_icon="station,static/description/icon.png"
-                  sequence="100"/>
+                  sequence="-10"/>
 
         <menuitem id="menu_station"
                   name="Stations"
