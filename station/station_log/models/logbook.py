@@ -2,7 +2,7 @@ from odoo import models, fields
 
 
 class Logbook(models.Model):
-    _name = "stationlog.logbook"
+    _name = "station_log.logbook"
     _inherit = "mail.thread"
 
     name = fields.Char(
@@ -22,10 +22,10 @@ class Logbook(models.Model):
         string="Users",
         help="Enabled users",
         comodel_name="res.users",
-        relation="stationlog_logbook_res_users_rel",
+        relation="station_log_logbook_res_users_rel",
         column1="logbook_id",
         column2="res_users_id",
-        domain=lambda self: [("groups_id", "in", [self.env.ref("stationlog.group_user").id])],
+        domain=lambda self: [("groups_id", "in", [self.env.ref("station_log.group_user").id])],
         track_visibility="onchange"
     )
 
@@ -33,9 +33,9 @@ class Logbook(models.Model):
         string="Read only users",
         help="Read-only enabled users",
         comodel_name="res.users",
-        relation="stationlog_logbook_res_users_read_rel",
+        relation="station_log_logbook_res_users_read_rel",
         column1="logbook_id",
         column2="res_users_id",
-        domain=lambda self: [("groups_id", "in", [self.env.ref("stationlog.group_user").id])],
+        domain=lambda self: [("groups_id", "in", [self.env.ref("station_log.group_user").id])],
         track_visibility="onchange"
     )

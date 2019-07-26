@@ -5,7 +5,7 @@
 
         <record model="ir.ui.view" id="wizard_cabrillo_import_form">
             <field name="name">wizard_cabrillo_import_form</field>
-            <field name="model">stationlog.wizard_cabrillo_import</field>
+            <field name="model">station_log.wizard_cabrillo_import</field>
             <field name="arch" type="xml">
                 <form string="Cabrillo Import" create="false" edit="false" delete="false">
                     <sheet>

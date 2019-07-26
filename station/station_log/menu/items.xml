@@ -6,8 +6,8 @@
         <menuitem id="menu_root"
                   groups="group_user"
                   name="Station Log"
-                  web_icon="stationlog,static/description/icon.png"
-                  sequence="0"/>
+                  web_icon="station_log,static/description/icon.png"
+                  sequence="-100"/>
 
         <menuitem id="menu_dashboard"
                   name="Dashboard"

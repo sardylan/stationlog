@@ -5,7 +5,7 @@
 
         <record model="ir.ui.view" id="view_contest_tree">
             <field name="name">view_contest_tree</field>
-            <field name="model">stationlog.contest</field>
+            <field name="model">station_log.contest</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -18,7 +18,7 @@
 
         <record model="ir.ui.view" id="view_contest_form">
             <field name="name">view_contest_form</field>
-            <field name="model">stationlog.contest</field>
+            <field name="model">station_log.contest</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -31,7 +31,7 @@
                         </group>
                         <group>
                             <field name="qso_ids"
-                                   context="{'tree_view_ref' : 'stationlog.view_qso_tree_contest'}"/>
+                                   context="{'tree_view_ref' : 'station_log.view_qso_tree_contest'}"/>
                         </group>
                         <notebook>
                             <page string="Note">
@@ -49,7 +49,7 @@
 
         <record model="ir.ui.view" id="view_contest_calendar">
             <field name="name">view_contest_calendar</field>
-            <field name="model">stationlog.contest</field>
+            <field name="model">station_log.contest</field>
             <field name="arch" type="xml">
                 <calendar string="contest"
                           date_start="ts_start"
@@ -62,7 +62,7 @@
 
         <record model="ir.ui.view" id="view_contest_search">
             <field name="name">view_contest_search</field>
-            <field name="model">stationlog.contest</field>
+            <field name="model">station_log.contest</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>

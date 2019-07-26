@@ -5,7 +5,7 @@
 
         <record model="ir.ui.view" id="station_tree">
             <field name="name">station</field>
-            <field name="model">stationlog.station</field>
+            <field name="model">station_log.station</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -15,7 +15,7 @@
 
         <record model="ir.ui.view" id="station_form">
             <field name="name">station</field>
-            <field name="model">stationlog.station</field>
+            <field name="model">station_log.station</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>

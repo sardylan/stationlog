@@ -4,7 +4,7 @@ from odoo.http import route, request
 
 class QSOExportController(http.Controller):
     @route(
-        route="/stationlog/api/v1/export/qso",
+        route="/station_log/api/v1/export/qso",
         type="http",
         auth="user",
         methods=["GET"],
@@ -12,7 +12,7 @@ class QSOExportController(http.Controller):
         csrf=False
     )
     def export_qso(self):
-        qso_obj = request.env["stationlog.qso"]
+        qso_obj = request.env["station_log.qso"]
 
         qso_ids = qso_obj.search([], order="ts_start ASC")
 
@@ -20,6 +20,6 @@ class QSOExportController(http.Controller):
             "qso_ids": qso_ids
         }
 
-        html_content = request.render("stationlog.export_qso", qcontext=values, lazy=False)
+        html_content = request.render("station_log.export_qso", qcontext=values, lazy=False)
 
         return html_content

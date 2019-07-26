@@ -2,12 +2,12 @@ from odoo import models, fields, api
 
 
 class Dashboard(models.TransientModel):
-    _name = "stationlog.wizard_dashboard"
+    _name = "station_log.wizard_dashboard"
     _description = "Main dashboard with QSOs summary"
 
     logbook_id = fields.Many2one(
         string="Logbook",
-        comodel_name="stationlog.logbook",
+        comodel_name="station_log.logbook",
         domain=lambda self: self.domain_logbook_id(),
         default=lambda self: self.default_logbook_id()
     )
@@ -29,7 +29,7 @@ class Dashboard(models.TransientModel):
     modulation_qso_count_ids = fields.One2many(
         string="Per modulation",
         help="Number of QSO per modulation",
-        comodel_name="stationlog.wizard_dashboard_qso_modulation_count",
+        comodel_name="station_log.wizard_dashboard_qso_modulation_count",
         inverse_name="wizard_id",
         readonly=True
     )
@@ -41,7 +41,7 @@ class Dashboard(models.TransientModel):
         ]
 
     def default_logbook_id(self):
-        logbook_obj = self.env["stationlog.logbook"]
+        logbook_obj = self.env["station_log.logbook"]
         logbook_domain = self.domain_logbook_id()
         logbook_id = logbook_obj.search(logbook_domain, limit=1)
         if not logbook_id:
@@ -56,8 +56,8 @@ class Dashboard(models.TransientModel):
         if not self.logbook_id:
             return
 
-        qso_obj = self.env["stationlog.qso"]
-        qso_modulation_count_obj = self.env["stationlog.wizard_dashboard_qso_modulation_count"]
+        qso_obj = self.env["station_log.qso"]
+        qso_modulation_count_obj = self.env["station_log.wizard_dashboard_qso_modulation_count"]
 
         self.qso_count = qso_obj.search([
             ("logbook_id.id", "=", self.logbook_id.id)
@@ -66,7 +66,7 @@ class Dashboard(models.TransientModel):
         self._cr.execute(
             "SELECT m.id AS modulation_id, "
             "  count(q.id) AS qso_count "
-            "FROM stationlog_qso q "
+            "FROM station_log_qso q "
             "  INNER JOIN hamutility_modulation m ON q.modulation_id = m.id "
             "GROUP BY m.id "
             "ORDER BY qso_count DESC "
@@ -89,17 +89,17 @@ class Dashboard(models.TransientModel):
 
 
 class DashboardQsoModulationCount(models.TransientModel):
-    _name = "stationlog.wizard_dashboard_qso_modulation_count"
+    _name = "station_log.wizard_dashboard_qso_modulation_count"
     _description = "Helper transient model for dashboard"
 
     wizard_id = fields.Many2one(
         string="Wizard",
-        comodel_name="stationlog.wizard_dashboard"
+        comodel_name="station_log.wizard_dashboard"
     )
 
     logbook_id = fields.Many2one(
         string="Logbook",
-        comodel_name="stationlog.logbook"
+        comodel_name="station_log.logbook"
     )
 
     modulation_id = fields.Many2one(
@@ -120,7 +120,7 @@ class DashboardQsoModulationCount(models.TransientModel):
         return {
             "type": "ir.actions.act_window",
             "name": "QSO in %s" % self.modulation_id.complete_name,
-            "res_model": "stationlog.qso",
+            "res_model": "station_log.qso",
             "view_mode": "tree,form",
             "target": "main",
             "domain": [

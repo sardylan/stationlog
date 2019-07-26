@@ -2,7 +2,7 @@ from odoo import models, fields
 
 
 class Contest(models.Model):
-    _name = "stationlog.contest"
+    _name = "station_log.contest"
     _inherit = "mail.thread"
     _description = "QSO"
     _order = "ts_start DESC, ts_end DESC"
@@ -29,7 +29,7 @@ class Contest(models.Model):
     qso_ids = fields.One2many(
         string="QSOs",
         help="QSOs related to this contest",
-        comodel_name="stationlog.qso",
+        comodel_name="station_log.qso",
         inverse_name="contest_id"
     )
 

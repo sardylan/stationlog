@@ -7,8 +7,8 @@ class ResUsers(models.Model):
     logbook_ids = fields.Many2many(
         string="Logbooks",
         help="Enabled logbook",
-        comodel_name="stationlog.logbook",
-        relation="stationlog_logbook_res_users_read_rel",
+        comodel_name="station_log.logbook",
+        relation="station_log_logbook_res_users_read_rel",
         column1="res_users_id",
         column2="logbook_id",
         readonly=True
@@ -17,8 +17,8 @@ class ResUsers(models.Model):
     read_logbook_ids = fields.Many2many(
         string="Read only logbooks",
         help="Read-only enabled logbooks",
-        comodel_name="stationlog.logbook",
-        relation="stationlog_logbook_res_users_read_rel",
+        comodel_name="station_log.logbook",
+        relation="station_log_logbook_res_users_read_rel",
         column1="res_users_id",
         column2="logbook_id",
         readonly=True

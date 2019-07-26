@@ -24,7 +24,7 @@ SELECTION_SIGNAL_TONE = [
 
 
 class QSO(models.Model):
-    _name = "stationlog.qso"
+    _name = "station_log.qso"
     _inherit = "mail.thread"
     _description = "QSO"
     _order = "ts_start DESC, callsign ASC"
@@ -39,7 +39,7 @@ class QSO(models.Model):
 
     logbook_id = fields.Many2one(
         string="Logbook",
-        comodel_name="stationlog.logbook",
+        comodel_name="station_log.logbook",
         required=True,
         domain=lambda self: self.domain_logbook_id(),
         default=lambda self: self.default_logbook_id(),
@@ -49,7 +49,7 @@ class QSO(models.Model):
     contest_id = fields.Many2one(
         string="Contest",
         help="Contest",
-        comodel_name="stationlog.contest",
+        comodel_name="station_log.contest",
         track_visibility="onchange"
     )
 
@@ -303,7 +303,7 @@ class QSO(models.Model):
         ]
 
     def default_logbook_id(self):
-        logbook_obj = self.env["stationlog.logbook"]
+        logbook_obj = self.env["station_log.logbook"]
         logbook_domain = self.domain_logbook_id()
         logbook_id = logbook_obj.search(logbook_domain, limit=1)
         if not logbook_id:

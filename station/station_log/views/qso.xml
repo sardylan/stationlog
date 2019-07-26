@@ -5,7 +5,7 @@
 
         <record model="ir.ui.view" id="view_qso_tree">
             <field name="name">view_qso_tree</field>
-            <field name="model">stationlog.qso</field>
+            <field name="model">station_log.qso</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="callsign"/>
@@ -24,7 +24,7 @@
 
         <record model="ir.ui.view" id="view_qso_tree_contest">
             <field name="name">view_qso_tree_contest</field>
-            <field name="model">stationlog.qso</field>
+            <field name="model">station_log.qso</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="callsign"/>
@@ -38,7 +38,7 @@
 
         <record model="ir.ui.view" id="view_qso_form">
             <field name="name">view_qso_form</field>
-            <field name="model">stationlog.qso</field>
+            <field name="model">station_log.qso</field>
             <field name="arch" type="xml">
                 <form>
                     <header>
@@ -126,7 +126,7 @@
 
         <record model="ir.ui.view" id="view_qso_calendar">
             <field name="name">view_qso_calendar</field>
-            <field name="model">stationlog.qso</field>
+            <field name="model">station_log.qso</field>
             <field name="arch" type="xml">
                 <calendar string="QSO"
                           date_start="ts_start"
@@ -141,7 +141,7 @@
 
         <record model="ir.ui.view" id="view_qso_search">
             <field name="name">view_qso_search</field>
-            <field name="model">stationlog.qso</field>
+            <field name="model">station_log.qso</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="callsign"/>

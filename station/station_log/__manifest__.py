@@ -1,14 +1,16 @@
 {
     "name": "Station Log",
-    "version": "12.0.0.9.0",
+    "version": "12.0.0.10.0",
     "category": "Extra Tools",
     "summary": "HAM Station log",
     "depends": [
         "base",
         "mail",
         "hamutility",
-        "widget_datetime_tz"
-        "widget_googlemaps"
+        "widget_datetime_tz",
+        "widget_googlemaps",
+        "station",
+        "web_responsive"
     ],
     "data": [
         "security/groups.xml",

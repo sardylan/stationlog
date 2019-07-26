@@ -5,7 +5,7 @@
 
         <record model="ir.ui.view" id="wizard_dashboard_form">
             <field name="name">wizard_dashboard_form</field>
-            <field name="model">stationlog.wizard_dashboard</field>
+            <field name="model">station_log.wizard_dashboard</field>
             <field name="arch" type="xml">
                 <form string="Dashboard" create="false" edit="false" delete="false">
                     <header>
@@ -25,7 +25,7 @@
 
         <record model="ir.ui.view" id="wizard_dashboard_qso_modulation_count_tree">
             <field name="name">wizard_dashboard_qso_modulation_count_tree</field>
-            <field name="model">stationlog.wizard_dashboard_qso_modulation_count</field>
+            <field name="model">station_log.wizard_dashboard_qso_modulation_count</field>
             <field name="arch" type="xml">
                 <tree create="false" edit="false" delete="false">
                     <field name="modulation_id"/>

@@ -1,75 +1,75 @@
 @charset "UTF-8";
 
-.stationlog-qso {
+.station_log-qso {
     page-break-inside: avoid;
     margin: 5mm 2mm;
     padding: 2mm 2mm;
     border: #c1c1c1 2mm solid;
 }
 
-.stationlog-qso .stationlog-header {
+.station_log-qso .station_log-header {
     vertical-align: middle;
 }
 
-.stationlog-qso .stationlog-header div {
+.station_log-qso .station_log-header div {
     display: inline-block;
 }
 
-.stationlog-qso .stationlog-header .stationlog-station {
+.station_log-qso .station_log-header .station_log-station {
     font-size: 160%;
     padding-left: 3mm;
     float: left;
 }
 
-.stationlog-qso .stationlog-header .stationlog-station .stationlog-callsign {
+.station_log-qso .station_log-header .station_log-station .station_log-callsign {
     font-family: monospace;
     font-weight: bold;
 }
 
-.stationlog-qso .stationlog-header .stationlog-station .stationlog-name {
+.station_log-qso .station_log-header .station_log-station .station_log-name {
 }
 
-.stationlog-qso .stationlog-header .stationlog-station .stationlog-country {
+.station_log-qso .station_log-header .station_log-station .station_log-country {
 }
 
-.stationlog-qso .stationlog-header .stationlog-datetime {
+.station_log-qso .station_log-header .station_log-datetime {
     font-size: 90%;
     padding-left: 1.5mm;
     float: right;
     text-align: right;
 }
 
-.stationlog-qso .stationlog-info {
+.station_log-qso .station_log-info {
     font-size: 85%;
     border: 0.2mm solid #EEEEEE;
     padding: 1mm 2mm;
     clear: both;
 }
 
-.stationlog-qso .stationlog-info .stationlog-radio {
+.station_log-qso .station_log-info .station_log-radio {
 
 }
 
-.stationlog-qso .stationlog-info .stationlog-radio div {
+.station_log-qso .station_log-info .station_log-radio div {
     float: left;
     margin-right: 2mm;
 }
 
-.stationlog-qso .stationlog-info .stationlog-report {
+.station_log-qso .station_log-info .station_log-report {
     clear: both;
 }
 
-.stationlog-qso .stationlog-info .stationlog-report div {
+.station_log-qso .station_log-info .station_log-report div {
     float: left;
     margin-right: 2mm;
 }
 
-.stationlog-qso .stationlog-note {
+.station_log-qso .station_log-note {
     clear: both;
     margin: 1mm 0;
     padding: 0 1mm;
 }
 
-.stationlog-param {
+.station_log-param {
     font-weight: bold;
 }

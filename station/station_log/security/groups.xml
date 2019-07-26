@@ -3,7 +3,7 @@
 <odoo>
     <data noupdate="0">
 
-        <record model="ir.module.category" id="category_stationlog">
+        <record model="ir.module.category" id="category_station_log">
             <field name="name">Station Log</field>
             <field name="description">Station Log group</field>
             <field name="sequence">1</field>
@@ -11,13 +11,13 @@
 
         <record model="res.groups" id="group_user">
             <field name="name">User</field>
-            <field name="category_id" ref="category_stationlog"/>
+            <field name="category_id" ref="category_station_log"/>
         </record>
 
         <record model="res.groups" id="group_admin">
             <field name="name">Admin</field>
-            <field name="category_id" ref="category_stationlog"/>
-            <field name="implied_ids" eval="[(4, ref('stationlog.group_user'))]"/>
+            <field name="category_id" ref="category_station_log"/>
+            <field name="implied_ids" eval="[(4, ref('station_log.group_user'))]"/>
             <field name="users" eval="[(4, ref('base.user_admin'))]"/>
         </record>
 

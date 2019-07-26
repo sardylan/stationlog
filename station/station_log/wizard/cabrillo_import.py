@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 
 class CabrilloImport(models.TransientModel):
-    _name = "stationlog.wizard_cabrillo_import"
+    _name = "station_log.wizard_cabrillo_import"
     _description = "Wizard for importing contest QSOs from Cabrillo format"
 
     import_file = fields.Binary(
@@ -24,7 +24,7 @@ class CabrilloImport(models.TransientModel):
     contest_id = fields.Many2one(
         string="Contest",
         help="Select contest for imported QSOs",
-        comodel_name="stationlog.contest",
+        comodel_name="station_log.contest",
         required=True
     )
 
@@ -71,7 +71,7 @@ class CabrilloImport(models.TransientModel):
         self.ensure_one()
 
         modulation_obj = self.env["hamutility.modulation"]
-        qso_obj = self.env["stationlog.qso"]
+        qso_obj = self.env["station_log.qso"]
         cabrillo_obj = self.env["hamutility.cabrillo"]
 
         if not self.import_file:
