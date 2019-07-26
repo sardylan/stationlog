@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <menuitem id="menu_root"
+                  name="Stations"
+                  web_icon="station,static/description/icon.png"
+                  sequence="100"/>
+
+        <menuitem id="menu_station"
+                  name="Stations"
+                  parent="menu_root"
+                  groups="group_station_view"
+                  sequence="0"/>
+
+        <menuitem id="menu_station_list"
+                  name="List"
+                  parent="menu_station"
+                  action="action_station_list"
+                  sequence="0"/>
+
+    </data>
+</odoo>
