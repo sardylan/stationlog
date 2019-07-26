@@ -5,9 +5,11 @@
     "summary": "HAM Stations management",
     "depends": [
         "base",
+        "contacts",
         "mail",
         "hamutility",
-        "widget_googlemaps"
+        "widget_googlemaps",
+        "web_responsive"
     ],
     "data": [
         "security/groups.xml",
