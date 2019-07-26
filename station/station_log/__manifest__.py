@@ -4,12 +4,11 @@
     "category": "Extra Tools",
     "summary": "HAM Station log",
     "depends": [
+        "base",
         "mail",
-        "snailmail",
-        "web_responsive",
-        "base_technical_features",
         "hamutility",
         "widget_datetime_tz"
+        "widget_googlemaps"
     ],
     "data": [
         "security/groups.xml",
