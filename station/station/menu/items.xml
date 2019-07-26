@@ -5,13 +5,13 @@
 
         <menuitem id="menu_root"
                   name="Stations"
+                  groups="group_station_view"
                   web_icon="station,static/description/icon.png"
                   sequence="-10"/>
 
         <menuitem id="menu_station"
                   name="Stations"
                   parent="menu_root"
-                  groups="group_station_view"
                   sequence="0"/>
 
         <menuitem id="menu_station_list"
