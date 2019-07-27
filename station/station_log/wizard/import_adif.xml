@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <record model="ir.ui.view" id="view_wizard_import_adif_form">
+            <field name="name">view_wizard_import_adif_form</field>
+            <field name="model">station_log.wizard_import_adif</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="file_name" invisible="1"/>
+                            <field name="file_binary"
+                                   filename="file_name"
+                                   widget="binary"/>
+                            <field name="encoding"/>
+                        </group>
+                        <group>
+                            <field name="file_size"/>
+                        </group>
+                        <group>
+                            <field name="raw_content"
+                                   class="border border-primary rounded"
+                                   widget="ace"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button type="object"
+                                name="action_import"
+                                string="Import"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

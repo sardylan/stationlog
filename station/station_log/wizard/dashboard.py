@@ -8,8 +8,8 @@ class Dashboard(models.TransientModel):
     logbook_id = fields.Many2one(
         string="Logbook",
         comodel_name="station_log.logbook",
-        domain=lambda self: self.domain_logbook_id(),
-        default=lambda self: self.default_logbook_id()
+        domain=lambda self: self.env["station_log.logbook"].get_users_logbook_domain(self.env.uid),
+        default=lambda self: self.env["station_log.logbook"].default_logbook_id(self.env.uid)
     )
 
     qso_count = fields.Integer(
@@ -33,21 +33,6 @@ class Dashboard(models.TransientModel):
         inverse_name="wizard_id",
         readonly=True
     )
-
-    def domain_logbook_id(self):
-        return [
-            ("active", "=", True),
-            ("res_users_ids", "in", [self.env.uid])
-        ]
-
-    def default_logbook_id(self):
-        logbook_obj = self.env["station_log.logbook"]
-        logbook_domain = self.domain_logbook_id()
-        logbook_id = logbook_obj.search(logbook_domain, limit=1)
-        if not logbook_id:
-            return False
-
-        return logbook_id.id
 
     @api.depends("logbook_id")
     def _compute_data(self):

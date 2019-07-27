@@ -36,12 +36,19 @@
             <field name="limit">20</field>
         </record>
 
-        <record model="ir.actions.act_window" id="action_qso_import_cabrillo">
+        <record model="ir.actions.act_window" id="action_import_cabrillo">
             <field name="name">Import from Cabrillo</field>
-            <field name="res_model">station_log.wizard_cabrillo_import</field>
+            <field name="res_model">station_log.wizard_import_cabrillo</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
             <field name="domain">[]</field>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_import_adif">
+            <field name="name">Import QSOs from ADIF file</field>
+            <field name="res_model">station_log.wizard_import_adif</field>
+            <field name="view_mode">form</field>
             <field name="target">new</field>
         </record>
 

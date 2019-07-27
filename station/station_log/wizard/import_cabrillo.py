@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 
 class CabrilloImport(models.TransientModel):
-    _name = "station_log.wizard_cabrillo_import"
+    _name = "station_log.wizard_import_cabrillo"
     _description = "Wizard for importing contest QSOs from Cabrillo format"
 
     import_file = fields.Binary(

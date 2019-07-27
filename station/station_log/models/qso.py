@@ -25,8 +25,9 @@ SELECTION_SIGNAL_TONE = [
 
 class QSO(models.Model):
     _name = "station_log.qso"
-    _inherit = "mail.thread"
     _description = "QSO"
+    _inherit = "mail.thread"
+    _rec_name = "callsign"
     _order = "ts_start DESC, callsign ASC"
 
     _sql_constraints = [
@@ -41,8 +42,8 @@ class QSO(models.Model):
         string="Logbook",
         comodel_name="station_log.logbook",
         required=True,
-        domain=lambda self: self.domain_logbook_id(),
-        default=lambda self: self.default_logbook_id(),
+        domain=lambda self: self.env["station_log.logbook"].get_users_logbook_domain(self.env.uid),
+        default=lambda self: self.env["station_log.logbook"].default_logbook_id(self.env.uid),
         track_visibility="onchange"
     )
 
@@ -58,6 +59,13 @@ class QSO(models.Model):
         help="Callsign",
         required=True,
         copy=False,
+        track_visibility="onchange"
+    )
+
+    station_id = fields.Many2one(
+        string="Station",
+        help="Station",
+        comodel_name="station.station",
         track_visibility="onchange"
     )
 
@@ -295,21 +303,6 @@ class QSO(models.Model):
             if rec.qsl_received:
                 value.append("RX")
             rec.qsl_status = "-".join(value)
-
-    def domain_logbook_id(self):
-        return [
-            ("active", "=", True),
-            ("res_users_ids", "in", [self.env.uid])
-        ]
-
-    def default_logbook_id(self):
-        logbook_obj = self.env["station_log.logbook"]
-        logbook_domain = self.domain_logbook_id()
-        logbook_id = logbook_obj.search(logbook_domain, limit=1)
-        if not logbook_id:
-            return False
-
-        return logbook_id.id
 
     def action_station_qrz_com(self):
         self.ensure_one()

@@ -35,8 +35,14 @@
         <menuitem id="menu_qso_import_cabrillo"
                   name="from Cabrillo"
                   parent="menu_qso_import"
-                  action="action_qso_import_cabrillo"
+                  action="action_import_cabrillo"
                   sequence="0"/>
+
+        <menuitem id="menu_qso_import_adif"
+                  name="from ADIF"
+                  parent="menu_qso_import"
+                  action="action_import_adif"
+                  sequence="1"/>
 
         <menuitem id="menu_contest"
                   name="Contest"

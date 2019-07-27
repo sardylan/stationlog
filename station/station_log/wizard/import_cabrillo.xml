@@ -3,9 +3,9 @@
 <odoo>
     <data noupdate="0">
 
-        <record model="ir.ui.view" id="wizard_cabrillo_import_form">
-            <field name="name">wizard_cabrillo_import_form</field>
-            <field name="model">station_log.wizard_cabrillo_import</field>
+        <record model="ir.ui.view" id="wizard_import_cabrillo_form">
+            <field name="name">wizard_import_cabrillo_form</field>
+            <field name="model">station_log.wizard_import_cabrillo</field>
             <field name="arch" type="xml">
                 <form string="Cabrillo Import" create="false" edit="false" delete="false">
                     <sheet>

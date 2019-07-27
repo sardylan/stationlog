@@ -9,6 +9,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="callsign"/>
+                    <field name="station_id"/>
                     <field name="ts_start" widget="datetime_tz"/>
                     <field name="frequency"/>
                     <field name="modulation_id"/>
@@ -60,6 +61,9 @@
                             <label for="operator"/>
                             <field name="operator" class="w-25"/>
                         </h2>
+                        <group>
+                            <field name="station_id"/>
+                        </group>
                         <group col="4">
                             <field name="ts_start" widget="datetime_tz"/>
                             <field name="qth"/>
@@ -146,6 +150,8 @@
                 <search>
                     <field name="callsign"/>
                     <field name="qth"/>
+                    <separator/>
+                    <field name="station_id"/>
                     <separator/>
                     <field name="contest_id"/>
                     <separator/>

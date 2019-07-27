@@ -1,9 +1,11 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class Logbook(models.Model):
     _name = "station_log.logbook"
+    _description = "Station LogBook"
     _inherit = "mail.thread"
+    _order = "create_date DESC"
 
     name = fields.Char(
         string="Name",
@@ -39,3 +41,20 @@ class Logbook(models.Model):
         domain=lambda self: [("groups_id", "in", [self.env.ref("station_log.group_user").id])],
         track_visibility="onchange"
     )
+
+    @api.model
+    def get_users_logbook_domain(self, uid):
+        return [
+            ("active", "=", True),
+            ("res_users_ids", "in", [uid])
+        ]
+
+    @api.model
+    def default_logbook_id(self, uid):
+        logbook_domain = self.get_users_logbook_domain(uid)
+        logbook_id = self.search(logbook_domain, limit=1)
+
+        if not logbook_id:
+            return False
+
+        return logbook_id
