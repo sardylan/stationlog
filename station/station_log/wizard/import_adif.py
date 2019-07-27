@@ -219,16 +219,13 @@ class ImportAdifWizard(models.TransientModel):
             ])
 
             if not qso_id:
-                try:
-                    qso_id = qso_obj.create(values)
-                except Exception as e:
-                    raise e
+                qso_id = qso_obj.create(values)
                 count_new += 1
             else:
                 qso_id.write(values)
                 count_updated += 1
 
-            _logger.info("QSO: %s - Total: %d - Number: %d" % (qso_id.callsign, qso_total, count_new+count_updated))
+            _logger.info("QSO: %s - Total: %d - Number: %d" % (qso_id.callsign, qso_total, count_new + count_updated))
 
         _logger.info("QSO count: %d new - %d updated" % (count_new, count_updated))
 
