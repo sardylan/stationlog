@@ -9,7 +9,6 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="callsign"/>
-                    <field name="station_id"/>
                     <field name="ts_start" widget="datetime_tz"/>
                     <field name="frequency"/>
                     <field name="modulation_id"/>
