@@ -25,6 +25,12 @@
                   name="List"
                   parent="menu_qso"
                   action="action_qso_list"
+                  sequence="0"/>
+
+        <menuitem id="menu_qso_massive_qso_creation"
+                  name="Massive creation"
+                  parent="menu_qso"
+                  action="action_massive_qso_creation"
                   sequence="1"/>
 
         <menuitem id="menu_qso_import"

@@ -30,6 +30,7 @@
         "wizard/dashboard.xml",
         "wizard/import_cabrillo.xml",
         "wizard/import_adif.xml",
+        "wizard/massive_qso_creation.xml",
 
         "menu/action.xml",
         "menu/items.xml"

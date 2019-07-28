@@ -28,6 +28,13 @@
             <field name="limit">20</field>
         </record>
 
+        <record model="ir.actions.act_window" id="action_massive_qso_creation">
+            <field name="name">Massive QSOs creation</field>
+            <field name="res_model">station_log.wizard_massive_qso_creation</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
         <record model="ir.actions.act_window" id="action_session_list">
             <field name="name">Sessions</field>
             <field name="res_model">station_log.session</field>

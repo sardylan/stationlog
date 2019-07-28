@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <record model="ir.ui.view" id="view_wizard_massive_qso_creation_form">
+            <field name="name">view_wizard_massive_qso_creation_form</field>
+            <field name="model">station_log.wizard_massive_qso_creation</field>
+            <field name="arch" type="xml">
+                <form string="Massive QSO creation" create="false" edit="false" delete="false">
+                    <sheet>
+                        <group>
+                            <field name="logbook_id"/>
+                            <field name="session_id"/>
+                            <field name="frequency"/>
+                            <field name="modulation_id"/>
+                            <field name="power"/>
+                        </group>
+                        <field name="item_ids_visible" invisible="1"/>
+                        <button name="action_show_item_ids"
+                                type="object"
+                                string="Show QSO list"
+                                attrs="{'invisible': [('item_ids_visible', '=', True)]}"/>
+                        <field name="item_ids"
+                               attrs="{'invisible': [('item_ids_visible', '=', False)]}"
+                               context="{'default_wizard_id': active_id}"/>
+                    </sheet>
+                    <footer>
+                        <button type="object"
+                                name="action_create"
+                                string="Create"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_wizard_massive_qso_creation_item_tree">
+            <field name="name">view_wizard_massive_qso_creation_item_tree</field>
+            <field name="model">station_log.wizard_massive_qso_creation_item</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="wizard_id" invisible="1"/>
+                    <field name="callsign"/>
+                    <field name="ts_start"/>
+                    <field name="ts_end"/>
+                    <field name="rst_tx"/>
+                    <field name="rst_rx"/>
+                    <field name="operator"/>
+                    <field name="qth"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>
