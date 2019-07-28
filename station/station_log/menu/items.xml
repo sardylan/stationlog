@@ -47,14 +47,24 @@
         <menuitem id="menu_contest"
                   name="Contest"
                   parent="menu_root"
-                  action="action_contest_list"
                   sequence="1"/>
 
         <menuitem id="menu_contest_list"
                   name="List"
                   parent="menu_contest"
                   action="action_contest_list"
-                  sequence="1"/>
+                  sequence="0"/>
+
+        <menuitem id="menu_qsl"
+                  name="QSL"
+                  parent="menu_root"
+                  sequence="2"/>
+
+        <menuitem id="menu_qsl_list"
+                  name="List"
+                  parent="menu_qsl"
+                  action="action_qsl_list"
+                  sequence="0"/>
 
         <menuitem id="menu_config"
                   name="Config"

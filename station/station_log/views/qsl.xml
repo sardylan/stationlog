@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <record model="ir.ui.view" id="view_qsl_tree">
+            <field name="name">view_qsl_tree</field>
+            <field name="model">station_log.qsl</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="qso_id"/>
+                    <field name="partner_id"/>
+                    <field name="direction"/>
+                    <field name="mode"/>
+                    <field name="ts"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_qsl_form">
+            <field name="name">view_qsl_form</field>
+            <field name="model">station_log.qsl</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="qso_id"/>
+                            <field name="partner_id"/>
+                            <field name="direction"/>
+                            <field name="mode"/>
+                            <field name="ts"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

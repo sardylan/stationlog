@@ -102,19 +102,15 @@
                                 <field name="tx_s" nolabel="1" class="w-25"/>
                                 <field name="tx_t" nolabel="1" class="w-25"/>
                             </div>
-                            <label for="qsl_sent" string="QSL Status"/>
-                            <div>
-                                <label for="qsl_sent" string="TX"/>
-                                <field name="qsl_sent"/>
-                                <label for="qsl_received" string="RX"/>
-                                <field name="qsl_received"/>
-                            </div>
                         </group>
                         <group>
                             <field name="contest_id"/>
                         </group>
                         <notebook>
-                            <page string="Note">
+                            <page name="qsl" string="QSL Cards">
+                                <field name="qsl_ids"/>
+                            </page>
+                            <page name="note" string="Note">
                                 <field name="note"/>
                             </page>
                         </notebook>
@@ -163,8 +159,7 @@
                     <field name="rx_rst"/>
                     <field name="tx_rst"/>
                     <separator/>
-                    <field name="qsl_sent"/>
-                    <field name="qsl_received"/>
+                    <field name="qsl_ids"/>
                     <separator/>
                     <field name="logbook_id"/>
                 </search>

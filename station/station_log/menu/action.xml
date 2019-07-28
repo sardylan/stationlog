@@ -36,6 +36,14 @@
             <field name="limit">20</field>
         </record>
 
+        <record model="ir.actions.act_window" id="action_qsl_list">
+            <field name="name">QSL Cards</field>
+            <field name="res_model">station_log.qsl</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="limit">20</field>
+        </record>
+
         <record model="ir.actions.act_window" id="action_import_cabrillo">
             <field name="name">Import from Cabrillo</field>
             <field name="res_model">station_log.wizard_import_cabrillo</field>

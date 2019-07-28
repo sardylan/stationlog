@@ -27,7 +27,7 @@ class QSO(models.Model):
     _name = "station_log.qso"
     _description = "QSO"
     _inherit = "mail.thread"
-    _rec_name = "callsign"
+    _rec_name = "short_desc"
     _order = "ts_start DESC, callsign ASC"
 
     _sql_constraints = [
@@ -179,16 +179,11 @@ class QSO(models.Model):
         track_visibility="onchange"
     )
 
-    qsl_sent = fields.Boolean(
-        string="QSL Sent",
-        help="QSL Sent",
-        track_visibility="onchange"
-    )
-
-    qsl_received = fields.Boolean(
-        string="QSL Received",
-        help="QSL Received",
-        track_visibility="onchange"
+    qsl_ids = fields.One2many(
+        string="QSL",
+        help="QSL cards",
+        comodel_name="station_log.qsl",
+        inverse_name="qso_id"
     )
 
     mobile = fields.Boolean(
@@ -254,6 +249,14 @@ class QSO(models.Model):
 
         return result
 
+    @api.model
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
+        if args is None:
+            args = []
+
+        domain = args + ["|", ("callsign", operator, name)]
+        return super().search(domain, limit=limit).name_get()
+
     @api.onchange("callsign")
     def _onchange_callsign(self):
         for rec in self:
@@ -294,15 +297,19 @@ class QSO(models.Model):
 
             rec.disturbs = "-".join(disturbs)
 
-    @api.depends("qsl_sent", "qsl_received")
+    @api.depends("qsl_ids")
     def _compute_qsl_status(self):
         for rec in self:
+
             value = []
-            if rec.qsl_sent:
+
+            if [x for x in rec.qsl_ids if x.direction == "tx"]:
                 value.append("TX")
-            if rec.qsl_received:
+
+            if [x for x in rec.qsl_ids if x.direction == "rx"]:
                 value.append("RX")
-            rec.qsl_status = "-".join(value)
+
+                rec.qsl_status = "-".join(value)
 
     def action_station_qrz_com(self):
         self.ensure_one()
@@ -339,8 +346,8 @@ class QSO(models.Model):
                 "default_qrm": self.qrm,
                 "default_qrn": self.qrn,
                 "default_qsb": self.qsb,
-                "default_qsl_sent": self.qsl_sent,
-                "default_qsl_received": self.qsl_received,
+                "default_sent_qsl_id": self.sent_qsl_id,
+                "default_received_qsl_id": self.received_qsl_id,
                 "default_note": self.note
             },
         }
