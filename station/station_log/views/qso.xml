@@ -16,14 +16,14 @@
                     <field name="rx_rst"/>
                     <field name="tx_rst"/>
                     <field name="qsl_status"/>
-                    <field name="contest_id"/>
+                    <field name="session_id"/>
                     <field name="logbook_id"/>
                 </tree>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_qso_tree_contest">
-            <field name="name">view_qso_tree_contest</field>
+        <record model="ir.ui.view" id="view_qso_tree_session">
+            <field name="name">view_qso_tree_session</field>
             <field name="model">station_log.qso</field>
             <field name="arch" type="xml">
                 <tree>
@@ -31,7 +31,7 @@
                     <field name="ts_start" widget="datetime_tz"/>
                     <field name="frequency"/>
                     <field name="modulation_id"/>
-                    <field name="contest_id"/>
+                    <field name="session_id"/>
                 </tree>
             </field>
         </record>
@@ -104,11 +104,15 @@
                             </div>
                         </group>
                         <group>
-                            <field name="contest_id"/>
+                            <field name="session_id"/>
                         </group>
                         <notebook>
                             <page name="qsl" string="QSL Cards">
-                                <field name="qsl_ids"/>
+                                <field name="qsl_ids"
+                                       context="{
+                                       'tree_view_ref': 'station_log.view_qsl_tree_qso',
+                                       'default_qso_id': active_id,
+                                       }"/>
                             </page>
                             <page name="note" string="Note">
                                 <field name="note"/>
@@ -133,7 +137,7 @@
                           color="logbook_id"
                           mode="month">
                     <field name="short_desc"/>
-                    <field name="contest_id"/>
+                    <field name="session_id"/>
                 </calendar>
             </field>
         </record>
@@ -148,7 +152,7 @@
                     <separator/>
                     <field name="station_id"/>
                     <separator/>
-                    <field name="contest_id"/>
+                    <field name="session_id"/>
                     <separator/>
                     <field name="ts_start"/>
                     <separator/>

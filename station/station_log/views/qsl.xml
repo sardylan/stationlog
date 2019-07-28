@@ -18,6 +18,20 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_qsl_tree_qso">
+            <field name="name">view_qsl_tree</field>
+            <field name="model">station_log.qsl</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner_id"/>
+                    <field name="direction"/>
+                    <field name="mode"/>
+                    <field name="ts"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="view_qsl_form">
             <field name="name">view_qsl_form</field>
             <field name="model">station_log.qsl</field>

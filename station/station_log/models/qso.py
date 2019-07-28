@@ -47,10 +47,10 @@ class QSO(models.Model):
         track_visibility="onchange"
     )
 
-    contest_id = fields.Many2one(
+    session_id = fields.Many2one(
         string="Contest",
         help="Contest",
-        comodel_name="station_log.contest",
+        comodel_name="station_log.session",
         track_visibility="onchange"
     )
 
@@ -254,7 +254,14 @@ class QSO(models.Model):
         if args is None:
             args = []
 
-        domain = args + ["|", ("callsign", operator, name)]
+        domain = []
+        if args:
+            domain.append("|")
+
+        domain.extend([
+            ("callsign", operator, name)
+        ])
+
         return super().search(domain, limit=limit).name_get()
 
     @api.onchange("callsign")
@@ -331,7 +338,7 @@ class QSO(models.Model):
             "view_mode": "form",
             "context": {
                 "default_logbook_id": self.logbook_id.id,
-                "default_contest_id": self.contest_id.id,
+                "default_session_id": self.session_id.id,
                 "default_ts_start": self.ts_start,
                 "default_ts_end": self.ts_end,
                 "default_frequency": self.frequency,

@@ -21,7 +21,7 @@
                             <field name="file_size"/>
                         </group>
                         <group string="Other informations" col="4">
-                            <field name="contest_id"/>
+                            <field name="session_id"/>
                             <field name="power"/>
                         </group>
                     </sheet>

@@ -3,12 +3,13 @@
 <odoo>
     <data noupdate="0">
 
-        <record model="ir.ui.view" id="view_contest_tree">
-            <field name="name">view_contest_tree</field>
-            <field name="model">station_log.contest</field>
+        <record model="ir.ui.view" id="view_session_tree">
+            <field name="name">view_session_tree</field>
+            <field name="model">station_log.session</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
+                    <field name="type"/>
                     <field name="ts_start" widget="datetime_tz"/>
                     <field name="ts_end" widget="datetime_tz"/>
                     <field name="qso_count"/>
@@ -16,22 +17,28 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_contest_form">
-            <field name="name">view_contest_form</field>
-            <field name="model">station_log.contest</field>
+        <record model="ir.ui.view" id="view_session_form">
+            <field name="name">view_session_form</field>
+            <field name="model">station_log.session</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
                         <h1>
                             <field name="name" class="w-25"/>
                         </h1>
+                        <h2>
+                            <field name="type" class="w-25"/>
+                        </h2>
                         <group col="4">
                             <field name="ts_start" widget="datetime_tz"/>
                             <field name="ts_end" widget="datetime_tz"/>
                         </group>
                         <group>
                             <field name="qso_ids"
-                                   context="{'tree_view_ref' : 'station_log.view_qso_tree_contest'}"/>
+                                   context="{
+                                   'tree_view_ref' : 'station_log.view_qso_tree_session',
+                                   'form_view_ref' : 'station_log.view_qso_form',
+                                   }"/>
                         </group>
                         <notebook>
                             <page string="Note">
@@ -47,25 +54,27 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_contest_calendar">
-            <field name="name">view_contest_calendar</field>
-            <field name="model">station_log.contest</field>
+        <record model="ir.ui.view" id="view_session_calendar">
+            <field name="name">view_session_calendar</field>
+            <field name="model">station_log.session</field>
             <field name="arch" type="xml">
-                <calendar string="contest"
+                <calendar string="session"
                           date_start="ts_start"
                           date_stop="ts_end"
                           mode="month">
                     <field name="name"/>
+                    <field name="type"/>
                 </calendar>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_contest_search">
-            <field name="name">view_contest_search</field>
-            <field name="model">station_log.contest</field>
+        <record model="ir.ui.view" id="view_session_search">
+            <field name="name">view_session_search</field>
+            <field name="model">station_log.session</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>
+                    <field name="type"/>
                     <separator/>
                     <field name="ts_start" widget="datetime_tz"/>
                     <field name="ts_end" widget="datetime_tz"/>

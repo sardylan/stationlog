@@ -28,9 +28,9 @@
             <field name="limit">20</field>
         </record>
 
-        <record model="ir.actions.act_window" id="action_contest_list">
-            <field name="name">Contest</field>
-            <field name="res_model">station_log.contest</field>
+        <record model="ir.actions.act_window" id="action_session_list">
+            <field name="name">Sessions</field>
+            <field name="res_model">station_log.session</field>
             <field name="view_mode">tree,form,calendar</field>
             <field name="domain">[]</field>
             <field name="limit">20</field>

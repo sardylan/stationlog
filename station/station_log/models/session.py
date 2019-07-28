@@ -1,8 +1,15 @@
 from odoo import models, fields
 
+SELECTION_TYPE = [
+    ("portable", "Portable"),
+    ("field", "Field day"),
+    ("award", "Award"),
+    ("contest", "Contest")
+]
 
-class Contest(models.Model):
-    _name = "station_log.contest"
+
+class Session(models.Model):
+    _name = "station_log.session"
     _inherit = "mail.thread"
     _description = "QSO"
     _order = "ts_start DESC, ts_end DESC"
@@ -10,27 +17,36 @@ class Contest(models.Model):
     name = fields.Char(
         string="Name",
         help="Contest name",
+        required=True,
         track_visibility="onchange",
-        required=True
+    )
+
+    type = fields.Selection(
+        string="Type",
+        help="Session type",
+        selection=SELECTION_TYPE,
+        required=True,
+        default="portable",
+        track_visibility="onchange"
     )
 
     ts_start = fields.Datetime(
         string="Start",
-        track_visibility="onchange",
-        required=True
+        required=True,
+        track_visibility="onchange"
     )
 
     ts_end = fields.Datetime(
         string="End",
-        track_visibility="onchange",
-        required=True
+        required=True,
+        track_visibility="onchange"
     )
 
     qso_ids = fields.One2many(
         string="QSOs",
         help="QSOs related to this contest",
         comodel_name="station_log.qso",
-        inverse_name="contest_id"
+        inverse_name="session_id"
     )
 
     note = fields.Html(

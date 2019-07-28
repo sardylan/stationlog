@@ -17,12 +17,12 @@
 
         "security/access/logbook.xml",
         "security/access/qso.xml",
-        "security/access/contest.xml",
+        "security/access/session.xml",
         "security/access/qsl.xml",
 
         "views/logbook.xml",
         "views/qso.xml",
-        "views/contest.xml",
+        "views/session.xml",
         "views/qsl.xml",
 
         "reports/qso.xml",

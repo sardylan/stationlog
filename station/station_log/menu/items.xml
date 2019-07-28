@@ -44,15 +44,15 @@
                   action="action_import_adif"
                   sequence="1"/>
 
-        <menuitem id="menu_contest"
-                  name="Contest"
+        <menuitem id="menu_session"
+                  name="Sessions"
                   parent="menu_root"
                   sequence="1"/>
 
-        <menuitem id="menu_contest_list"
+        <menuitem id="menu_session_list"
                   name="List"
-                  parent="menu_contest"
-                  action="action_contest_list"
+                  parent="menu_session"
+                  action="action_session_list"
                   sequence="0"/>
 
         <menuitem id="menu_qsl"

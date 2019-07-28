@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 
 class CabrilloImport(models.TransientModel):
     _name = "station_log.wizard_import_cabrillo"
-    _description = "Wizard for importing contest QSOs from Cabrillo format"
+    _description = "Wizard for importing session QSOs from Cabrillo format"
 
     import_file = fields.Binary(
         string="File",
@@ -21,10 +21,10 @@ class CabrilloImport(models.TransientModel):
         string="Filename"
     )
 
-    contest_id = fields.Many2one(
+    session_id = fields.Many2one(
         string="Contest",
-        help="Select contest for imported QSOs",
-        comodel_name="station_log.contest",
+        help="Select session for imported QSOs",
+        comodel_name="station_log.session",
         required=True
     )
 
@@ -83,7 +83,7 @@ class CabrilloImport(models.TransientModel):
 
         rows = file_content.splitlines()
 
-        contest_name = list(filter(lambda x: x.startswith("CONTEST:"), rows))[0].split()[1]
+        session_name = list(filter(lambda x: x.startswith("CONTEST:"), rows))[0].split()[1]
 
         row_count = 0
         qso_count = 0
@@ -118,7 +118,7 @@ class CabrilloImport(models.TransientModel):
                 callsign = cabrillo_row["rx_callsign"]
 
                 values = {
-                    "contest_id": self.contest_id.id,
+                    "session_id": self.session_id.id,
                     "callsign": callsign,
                     "frequency": cabrillo_row["frequency"],
                     "modulation_id": modulation_id.id,
@@ -132,7 +132,7 @@ class CabrilloImport(models.TransientModel):
                     "tx_s": cabrillo_row["tx_s"],
                     "tx_t": cabrillo_row["tx_t"],
                     "note": "<p>Contest: %s<br />Information sent: %s<br />Information received: %s</p>" % (
-                        contest_name,
+                        session_name,
                         cabrillo_row["tx_exchange"],
                         cabrillo_row["rx_exchange"]
                     )
