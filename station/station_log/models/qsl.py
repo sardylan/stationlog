@@ -1,13 +1,20 @@
 from odoo import models, fields
 
 SELECTION_DIRECTION = [
-    ("tx", "Sent"),
-    ("rx", "Received"),
+    ("tx", "TX"),
+    ("rx", "RX"),
 ]
 
 SELECTION_MODE = [
     ("direct", "Direct"),
     ("bureau", "Bureau")
+]
+
+SELECTION_STATUS = [
+    ("draft", "To be prepared"),
+    ("prepared", "Prepared"),
+    ("sent", "Sent"),
+    ("received", "Received")
 ]
 
 
@@ -47,6 +54,15 @@ class QSL(models.Model):
         help="QSL mode",
         selection=SELECTION_MODE,
         required=True,
+        track_visibility="onchange"
+    )
+
+    status = fields.Selection(
+        string="State",
+        help="QSL state",
+        selection=SELECTION_STATUS,
+        required=True,
+        default="draft",
         track_visibility="onchange"
     )
 

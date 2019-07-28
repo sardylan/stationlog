@@ -13,6 +13,7 @@
                     <field name="direction"/>
                     <field name="mode"/>
                     <field name="ts"/>
+                    <field name="status"/>
                 </tree>
             </field>
         </record>
@@ -22,6 +23,11 @@
             <field name="model">station_log.qsl</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <field name="status"
+                               widget="statusbar"
+                               options="{'clickable': '1'}"/>
+                    </header>
                     <sheet>
                         <group>
                             <field name="qso_id"/>
