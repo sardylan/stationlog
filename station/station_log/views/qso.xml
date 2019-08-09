@@ -127,6 +127,49 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_qso_form_rapid">
+            <field name="name">view_qso_form_rapid</field>
+            <field name="model">station_log.qso</field>
+            <field name="arch" type="xml">
+                <form string="QSO rapid" create="false" import="false" edit="false" delete="false">
+                    <header>
+                        <button type="object"
+                                name="action_continue"
+                                string="Continue"
+                                class="btn-primary pull-right"
+                                attrs="{'invisible': [('id', '=', False)]}"/>
+                    </header>
+                    <sheet>
+                        <group col="4">
+                            <field name="logbook_id"/>
+                            <field name="frequency"/>
+                            <field name="session_id"/>
+                            <field name="modulation_id"/>
+                            <field name="power"/>
+                        </group>
+                        <group col="4">
+                            <field name="ts_start"/>
+                            <field name="ts_end"/>
+                        </group>
+                        <group col="4">
+                            <field name="callsign"
+                                   attrs="{'required': False}"/>
+                            <newline/>
+                            <field name="rapid_tx_rst"
+                                   attrs="{'required': False}"/>
+                            <field name="rapid_rx_rst"
+                                   attrs="{'required': False}"/>
+                            <field name="operator"/>
+                            <field name="qth"/>
+                        </group>
+                        <group>
+                            <field name="note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="view_qso_calendar">
             <field name="name">view_qso_calendar</field>
             <field name="model">station_log.qso</field>

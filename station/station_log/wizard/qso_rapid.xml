@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data noupdate="0">
+
+        <record model="ir.ui.view" id="view_wizard_qso_rapid_form">
+            <field name="name">view_wizard_qso_rapid_form</field>
+            <field name="model">station_log.wizard_qso_rapid</field>
+            <field name="arch" type="xml">
+                <form string="QSO rapid" create="false" import="false" edit="false" delete="false">
+                    <sheet>
+                        <group col="4">
+                            <field name="logbook_id"/>
+                            <field name="frequency"/>
+                            <field name="session_id"/>
+                            <field name="modulation_id"/>
+                            <field name="power"/>
+                        </group>
+                        <group col="3">
+                            <field name="ts_start"/>
+                            <button name="action_ts_start_now"
+                                    type="object"
+                                    string="Now"/>
+                            <field name="ts_end"/>
+                            <button name="action_ts_end_now"
+                                    type="object"
+                                    string="Now"/>
+                        </group>
+                        <group col="4">
+                            <field name="callsign"/>
+                            <newline/>
+                            <field name="operator"/>
+                            <field name="qth"/>
+                        </group>
+                        <group>
+                            <field name="note"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button type="object"
+                                name="action_create"
+                                string="Create"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

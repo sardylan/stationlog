@@ -28,6 +28,16 @@
             <field name="limit">20</field>
         </record>
 
+        <record model="ir.actions.act_window" id="action_qso_rapid">
+            <field name="name">Rapid</field>
+            <field name="res_model">station_log.qso</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0), (0, 0, {'view_mode': 'form', 'view_id': ref('view_qso_form_rapid')})]"/>
+            <field name="target">new</field>
+        </record>
+
         <record model="ir.actions.act_window" id="action_massive_qso_creation">
             <field name="name">Massive QSOs creation</field>
             <field name="res_model">station_log.wizard_massive_qso_creation</field>

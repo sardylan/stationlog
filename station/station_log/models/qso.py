@@ -2,26 +2,6 @@ from datetime import datetime
 
 from odoo import models, fields, api
 
-SELECTION_READABILITY = [
-    ("1", "1"),
-    ("2", "2"),
-    ("3", "3"),
-    ("4", "4"),
-    ("5", "5")
-]
-
-SELECTION_SIGNAL_TONE = [
-    ("1", "1"),
-    ("2", "2"),
-    ("3", "3"),
-    ("4", "4"),
-    ("5", "5"),
-    ("6", "6"),
-    ("7", "7"),
-    ("8", "8"),
-    ("9", "9")
-]
-
 
 class QSO(models.Model):
     _name = "station_log.qso"
@@ -48,8 +28,8 @@ class QSO(models.Model):
     )
 
     session_id = fields.Many2one(
-        string="Contest",
-        help="Contest",
+        string="Session",
+        help="Session",
         comodel_name="station_log.session",
         track_visibility="onchange"
     )
@@ -119,45 +99,57 @@ class QSO(models.Model):
         track_visibility="onchange"
     )
 
+    rapid_tx_rst = fields.Char(
+        string="RX RST",
+        help="RX RST",
+        required=True
+    )
+
+    rapid_rx_rst = fields.Char(
+        string="RX RST",
+        help="RX RST",
+        required=True
+    )
+
     rx_r = fields.Selection(
         string="Received Readability",
         help="Received Readability",
-        selection=SELECTION_READABILITY,
+        selection=lambda self: self.env["station_log.utility_qso"].prepare_selection_readability(),
         track_visibility="onchange"
     )
 
     rx_s = fields.Selection(
         string="Received Strenght",
         help="Received Strenght",
-        selection=SELECTION_SIGNAL_TONE,
+        selection=lambda self: self.env["station_log.utility_qso"].prepare_selection_signal_tone(),
         track_visibility="onchange"
     )
 
     rx_t = fields.Selection(
         string="Received Tone",
         help="Received Tone",
-        selection=SELECTION_SIGNAL_TONE,
+        selection=lambda self: self.env["station_log.utility_qso"].prepare_selection_signal_tone(),
         track_visibility="onchange"
     )
 
     tx_r = fields.Selection(
         string="Sent Readability",
         help="Sent Readability",
-        selection=SELECTION_READABILITY,
+        selection=lambda self: self.env["station_log.utility_qso"].prepare_selection_readability(),
         track_visibility="onchange"
     )
 
     tx_s = fields.Selection(
         string="Sent Strenght",
         help="Sent Strenght",
-        selection=SELECTION_SIGNAL_TONE,
+        selection=lambda self: self.env["station_log.utility_qso"].prepare_selection_signal_tone(),
         track_visibility="onchange"
     )
 
     tx_t = fields.Selection(
         string="Sent Tone",
         help="Sent Tone",
-        selection=SELECTION_SIGNAL_TONE,
+        selection=lambda self: self.env["station_log.utility_qso"].prepare_selection_signal_tone(),
         track_visibility="onchange"
     )
 
@@ -357,6 +349,26 @@ class QSO(models.Model):
                 "default_received_qsl_id": self.received_qsl_id,
                 "default_note": self.note
             },
+        }
+
+    def action_continue(self):
+        self.ensure_one()
+
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Rapid",
+            "view_type": "form",
+            "view_mode": "form",
+            "res_model": "station_log.qso",
+            "target": "new",
+            "views": [(self.env.ref("station_log.view_qso_form_rapid").id, "form")],
+            "context": {
+                "default_logbook_id": self.logbook_id.id,
+                "default_frequency": self.frequency,
+                "default_session_id": self.session_id.id,
+                "default_modulation_id": self.modulation_id.id,
+                "default_power": self.power
+            }
         }
 
     @staticmethod

@@ -31,6 +31,7 @@
         "wizard/import_cabrillo.xml",
         "wizard/import_adif.xml",
         "wizard/massive_qso_creation.xml",
+        # "wizard/qso_rapid.xml",
 
         "menu/action.xml",
         "menu/items.xml"
