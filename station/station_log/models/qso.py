@@ -100,15 +100,13 @@ class QSO(models.Model):
     )
 
     rapid_tx_rst = fields.Char(
-        string="RX RST",
-        help="RX RST",
-        required=True
+        string="TX RST",
+        help="TX RST"
     )
 
     rapid_rx_rst = fields.Char(
         string="RX RST",
-        help="RX RST",
-        required=True
+        help="RX RST"
     )
 
     rx_r = fields.Selection(
@@ -224,6 +222,18 @@ class QSO(models.Model):
         if "callsign" in vals and vals["callsign"]:
             vals["callsign"] = vals["callsign"].strip().upper()
 
+        if "rapid_tx_rst" in vals and vals["rapid_tx_rst"]:
+            r, s, t = self._parse_rst_rapid(vals["rapid_tx_rst"])
+            vals["tx_r"] = r
+            vals["tx_s"] = s
+            vals["tx_t"] = t
+
+        if "rapid_rx_rst" in vals and vals["rapid_rx_rst"]:
+            r, s, t = self._parse_rst_rapid(vals["rapid_rx_rst"])
+            vals["rx_r"] = r
+            vals["rx_s"] = s
+            vals["rx_t"] = t
+
         return super().create(vals)
 
     @api.multi
@@ -262,12 +272,12 @@ class QSO(models.Model):
             if rec.callsign:
                 rec.callsign = rec.callsign.strip().upper()
 
-    @api.onchange("ts_start")
-    def _onchange_start(self):
-        for rec in self:
-            rec.ts_end = rec.ts_start
+    # @api.onchange("ts_start")
+    # def _onchange_start(self):
+    #     for rec in self:
+    #         rec.ts_end = rec.ts_start
 
-    @api.onchange("callsign", "frequency", "modulation_id")
+    @api.depends("callsign", "frequency", "modulation_id")
     def _compute_short_desc(self):
         for rec in self:
             rec.short_desc = "%s %.03f %s" % (
@@ -374,3 +384,15 @@ class QSO(models.Model):
     @staticmethod
     def _rst_string(r, s, t):
         return "%s-%s-%s" % (r or "X", s or "X", t or "X")
+
+    @staticmethod
+    def _parse_rst_rapid(rst=""):
+        if rst:
+            if len(rst) == 1:
+                return "5", rst, False
+            elif len(rst) == 2:
+                return rst[0], rst[1], False
+            elif len(rst) == 3:
+                return rst[0], rst[1], rst[2]
+
+        return "5", "9", "9"

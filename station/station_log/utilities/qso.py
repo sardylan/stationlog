@@ -23,6 +23,7 @@ SELECTION_SIGNAL_TONE = [
 
 class QSOUtility(models.AbstractModel):
     _name = "station_log.utility_qso"
+    _description = "QSO utilities"
 
     @api.model
     def prepare_selection_readability(self):
