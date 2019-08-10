@@ -33,8 +33,7 @@
             <field name="res_model">station_log.qso</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
-            <field name="view_ids"
-                   eval="[(5, 0, 0), (0, 0, {'view_mode': 'form', 'view_id': ref('view_qso_form_rapid')})]"/>
+            <field name="views" eval="[(ref('station_log.view_qso_form_rapid'), 'form')]"/>
             <field name="target">new</field>
         </record>
 
