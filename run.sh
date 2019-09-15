@@ -7,7 +7,7 @@ PATH="${VENV_HOME}/bin:${PATH}"
 
 python3 \
     ./odoo/odoo-bin \
-    --addons-path=odoo/odoo/addons,odoo/addons,server-ux,server-tools,web,hamutility,hnt-tools,stationlog,repeaters,awards \
+    --addons-path=odoo/odoo/addons,odoo/addons,server-tools,server-ux,web,hamutility,repeater,station \
     --db_host=127.0.0.1 \
     --db_port=5432 \
     --db_user=stationlog \
