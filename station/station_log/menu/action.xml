@@ -35,6 +35,11 @@
             <field name="view_mode">form</field>
             <field name="views" eval="[(ref('station_log.view_qso_form_rapid'), 'form')]"/>
             <field name="target">new</field>
+            <field name="context">{
+                "default_ts_start": False,
+                "default_ts_end": False
+                }
+            </field>
         </record>
 
         <record model="ir.actions.act_window" id="action_massive_qso_creation">

@@ -42,6 +42,13 @@ class QSO(models.Model):
         track_visibility="onchange"
     )
 
+    my_callsign = fields.Char(
+        string="My Callsign",
+        help="My Callsign",
+        required=True,
+        track_visibility="onchange"
+    )
+
     station_id = fields.Many2one(
         string="Station",
         help="Station",
@@ -234,6 +241,12 @@ class QSO(models.Model):
             vals["rx_s"] = s
             vals["rx_t"] = t
 
+        if "ts_start" not in vals or not vals["ts_start"]:
+            vals["ts_start"] = datetime.utcnow().replace(microsecond=0)
+
+        if "ts_end" not in vals or not vals["ts_end"]:
+            vals["ts_end"] = vals["ts_start"]
+
         return super().create(vals)
 
     @api.multi
@@ -276,6 +289,11 @@ class QSO(models.Model):
     # def _onchange_start(self):
     #     for rec in self:
     #         rec.ts_end = rec.ts_start
+
+    @api.onchange("logbook_id")
+    def _onchange_logbook_id(self):
+        for rec in self:
+            rec.my_callsign = rec.logbook_id.callsign
 
     @api.depends("callsign", "frequency", "modulation_id")
     def _compute_short_desc(self):
@@ -341,11 +359,13 @@ class QSO(models.Model):
             "context": {
                 "default_logbook_id": self.logbook_id.id,
                 "default_session_id": self.session_id.id,
+                "default_my_callsign": self.my_callsign,
                 "default_ts_start": self.ts_start,
                 "default_ts_end": self.ts_end,
                 "default_frequency": self.frequency,
                 "default_modulation_id": self.modulation_id.id,
                 "default_power": self.power,
+                "default_mobile": self.mobile,
                 "default_rx_r": self.rx_r,
                 "default_rx_s": self.rx_s,
                 "default_rx_t": self.rx_t,
@@ -355,10 +375,8 @@ class QSO(models.Model):
                 "default_qrm": self.qrm,
                 "default_qrn": self.qrn,
                 "default_qsb": self.qsb,
-                "default_sent_qsl_id": self.sent_qsl_id,
-                "default_received_qsl_id": self.received_qsl_id,
                 "default_note": self.note
-            },
+            }
         }
 
     def action_continue(self):
@@ -377,7 +395,9 @@ class QSO(models.Model):
                 "default_frequency": self.frequency,
                 "default_session_id": self.session_id.id,
                 "default_modulation_id": self.modulation_id.id,
-                "default_power": self.power
+                "default_power": self.power,
+                "default_ts_start": False,
+                "default_ts_end": False
             }
         }
 

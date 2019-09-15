@@ -13,6 +13,14 @@ class Logbook(models.Model):
         track_visibility="onchange"
     )
 
+    callsign = fields.Char(
+        string="Callsign",
+        help="Callsign",
+        required=True,
+        copy=False,
+        track_visibility="onchange"
+    )
+
     active = fields.Boolean(
         string="Active",
         default=True,
@@ -41,6 +49,26 @@ class Logbook(models.Model):
         domain=lambda self: [("groups_id", "in", [self.env.ref("station_log.group_user").id])],
         track_visibility="onchange"
     )
+
+    @api.model
+    def create(self, vals):
+        if "callsign" in vals and vals["callsign"]:
+            vals["callsign"] = vals["callsign"].strip().upper()
+
+        return super().create(vals)
+
+    @api.multi
+    def write(self, vals):
+        if "callsign" in vals and vals["callsign"]:
+            vals["callsign"] = vals["callsign"].strip().upper()
+
+        return super().write(vals)
+
+    @api.onchange("callsign")
+    def _onchange_callsign(self):
+        for rec in self:
+            if rec.callsign:
+                rec.callsign = rec.callsign.strip().upper()
 
     @api.model
     def get_users_logbook_domain(self, uid):
