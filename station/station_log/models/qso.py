@@ -46,6 +46,7 @@ class QSO(models.Model):
         string="My Callsign",
         help="My Callsign",
         required=True,
+        default=lambda self: self.env["station_log.logbook"].default_logbook_id(self.env.uid).callsign,
         track_visibility="onchange"
     )
 
